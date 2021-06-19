@@ -5,4 +5,5 @@
     <string name="password">Password</string>
     <string name="demo_eamil">test@test.com</string>
     <string name="demo_password_hint">123456</string>
+    <string name="user_email_password_is_wrong">User email or password is wrong</string>
 </resources>

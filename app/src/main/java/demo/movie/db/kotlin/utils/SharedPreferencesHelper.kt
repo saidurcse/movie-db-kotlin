@@ -17,6 +17,7 @@ class SharedPreferencesHelper(context: Context) {
     fun put(key: String, value: String?) {
         editor.putString(key, value).apply()
     }
+
     operator fun get(key: String, defaultValue: String): String {
         return sharedPreferences.getString(key, defaultValue)!!
     }
