@@ -1,6 +1,5 @@
 package demo.movie.db.kotlin.network
 
-import demo.movie.db.kotlin.BuildConfig
 import demo.movie.db.kotlin.model.RestListResponse
 import demo.movie.db.kotlin.ui.home.model.Movie
 import retrofit2.http.GET
