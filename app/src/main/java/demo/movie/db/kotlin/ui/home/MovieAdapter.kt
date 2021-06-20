@@ -36,7 +36,7 @@ class MovieAdapter : ListAdapter<Movie, MovieAdapter.MovieListViewHolder>(MovieD
 
             if(movie.posterPath != null) {
                 Glide.with(itemMovieCardBinding.moviePoster)
-                    .load("https://image.tmdb.org/t/p/" + movie.posterPath)
+                    .load("https://image.tmdb.org/t/p/w780" + movie.posterPath)
                     .apply(RequestOptions.bitmapTransform(CenterInside()))
                     .into(itemMovieCardBinding.moviePoster)
             } else {

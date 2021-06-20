@@ -18,7 +18,7 @@ import demo.movie.db.kotlin.utils.SharedPreferencesHelper
 class HomeFragment : Fragment(), View.OnClickListener {
     private lateinit var bindingView: FragmentMoviedbHomeBinding
     private lateinit var sharedPreferences: SharedPreferencesHelper
-    private val adapter = MovieAdapter
+    private val adapter = MovieAdapter()
 
     private val viewModel: HomeListViewModel by lazy {
         val endPoint = RestServiceGenerator.createService(MovieEndPoint::class.java)
@@ -35,7 +35,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         bindingView.apply {
             listMovies.setHasFixedSize(true)
             listMovies.itemAnimator = DefaultItemAnimator()
-            listMovies.setLayoutManager(GridLayoutManager(activity, 3))
+            listMovies.setLayoutManager(GridLayoutManager(activity, 2))
             listMovies.adapter = adapter
         }
 
