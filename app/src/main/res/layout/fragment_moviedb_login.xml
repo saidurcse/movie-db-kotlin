@@ -39,17 +39,15 @@
                 android:id="@+id/Login_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="@dimen/dimen_fourty"
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center_horizontal"
-                android:letterSpacing="-0.01"
-                android:lineSpacingExtra="6sp"
                 android:text="@string/login"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="normal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="@id/start_guideline"
+                app:layout_constraintTop_toTopOf="@id/top_guideline"
                 tools:text="@string/login" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -65,8 +63,8 @@
                 app:boxStrokeColor="@color/white"
                 app:errorEnabled="true"
                 app:hintTextColor="@color/black"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/start_guideline"
+                app:layout_constraintEnd_toEndOf="@id/end_guideline"
                 app:layout_constraintTop_toBottomOf="@+id/Login_text">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -95,8 +93,8 @@
                 app:boxStrokeColor="@color/white"
                 app:errorEnabled="true"
                 app:hintTextColor="@color/black"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/start_guideline"
+                app:layout_constraintEnd_toEndOf="@id/end_guideline"
                 app:layout_constraintTop_toBottomOf="@+id/input_email_layout">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -121,8 +119,8 @@
                 android:layout_marginEnd="@dimen/dimen_fifty"
                 android:gravity="center"
                 android:text="@string/login"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="@id/start_guideline"
+                app:layout_constraintRight_toRightOf="@id/end_guideline"
                 app:layout_constraintTop_toBottomOf="@+id/input_password_layout" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

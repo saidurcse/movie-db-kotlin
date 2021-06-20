@@ -19,6 +19,8 @@ android {
         vectorDrawables.useSupportLibrary = true
 
         buildConfigField "String", "API_URL", "\"" + getApiUrl() + "\""
+        buildConfigField "String", "IMAGE_URL", "\"" + getImageUrl() + "\""
+        buildConfigField "String", "API_KEY", "\"" + getApiKey() + "\""
     }
 
     dexOptions {
@@ -90,6 +92,10 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation 'com.squareup.okhttp3:logging-interceptor:4.6.0'
 
+    //Image Library
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
     // Testing
     androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
     testImplementation 'junit:junit:4.13.2'
@@ -104,6 +110,28 @@ def getApiUrl() {
     String apiUrl = properties.getProperty("api_url")
     if(apiUrl == null)
         throw new FileNotFoundException("Add 'api_url' field at local.properties file.")
+
+    return apiUrl
+}
+
+def getImageUrl() {
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+    String imageUrl = properties.getProperty("image_url")
+    if(imageUrl == null)
+        throw new FileNotFoundException("Add 'image_url' field at local.properties file.")
+
+    return apiUrl
+}
+
+def getApiKey() {
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+    String apiKey = properties.getProperty("api_key")
+    if(apiKey == null)
+        throw new FileNotFoundException("Add 'api_key' field at local.properties file.")
 
     return apiUrl
 }

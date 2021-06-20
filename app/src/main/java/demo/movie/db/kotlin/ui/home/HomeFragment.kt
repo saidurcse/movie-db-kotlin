@@ -4,20 +4,37 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import demo.movie.db.kotlin.databinding.FragmentMoviedbHomeBinding
-import demo.movie.db.kotlin.databinding.FragmentMoviedbLoginBinding
+import demo.movie.db.kotlin.network.MovieEndPoint
+import demo.movie.db.kotlin.network.RestServiceGenerator
 import demo.movie.db.kotlin.utils.SharedPreferencesHelper
 
 class HomeFragment : Fragment(), View.OnClickListener {
     private lateinit var bindingView: FragmentMoviedbHomeBinding
     private lateinit var sharedPreferences: SharedPreferencesHelper
 
+    private val viewModel: HomeListViewModel by lazy {
+        val endPoint = RestServiceGenerator.createService(MovieEndPoint::class.java)
+        val sharedPreferencesHelper = SharedPreferencesHelper(requireContext())
+        HomeListVMFactory(HomeListRepo(endPoint), sharedPreferencesHelper, requireContext()).create(HomeListViewModel::class.java)
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
         bindingView = FragmentMoviedbHomeBinding.inflate(layoutInflater, container, false)
+        bindingView.viewModel = viewModel
         sharedPreferences = SharedPreferencesHelper(requireContext())
 
+        viewModel.showMessage.observe(viewLifecycleOwner, Observer {
+            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+        })
+
+        viewModel.movieList.observe(viewLifecycleOwner, Observer { movieList ->
+            //adapter.submitList(movieList)
+        })
 
         return bindingView.root
     }

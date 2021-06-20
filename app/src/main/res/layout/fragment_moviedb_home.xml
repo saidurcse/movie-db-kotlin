@@ -3,6 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <import type="android.view.View" />
+        <variable name="viewModel" type="demo.movie.db.kotlin.ui.home.HomeListViewModel" />
+    </data>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -34,6 +39,30 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintGuide_end="@dimen/horizontal_margin" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_movies"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/start_guideline"
+                app:layout_constraintStart_toEndOf="@id/end_guideline"
+                tools:listitem="@layout/item_movie_card"/>
+
+          <!--  <androidx.core.widget.ContentLoadingProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.dataLoading ? View.VISIBLE : View.GONE}"
+                style="?android:attr/progressBarStyleLarge"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
