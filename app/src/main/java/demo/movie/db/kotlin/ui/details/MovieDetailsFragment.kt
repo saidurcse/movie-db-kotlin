@@ -6,13 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.request.RequestOptions
+import demo.movie.db.kotlin.BuildConfig
+import demo.movie.db.kotlin.MainActivity
 import demo.movie.db.kotlin.R
 import demo.movie.db.kotlin.databinding.FragmentMoviedbDetailsBinding
 
-class MovieDetailsFragment : Fragment() {
+class MovieDetailsFragment : Fragment(), View.OnClickListener {
     private lateinit var bindingView: FragmentMoviedbDetailsBinding
     private var movie_backdropPath: String? = null
     private var movie_overview: String? = null
@@ -25,7 +28,7 @@ class MovieDetailsFragment : Fragment() {
 
         if(movie_backdropPath != null) {
                 Glide.with(bindingView.moviePoster)
-                    .load("https://image.tmdb.org/t/p/w780" + movie_backdropPath)
+                    .load(BuildConfig.IMAGE_URL + movie_backdropPath)
                     .apply(RequestOptions.bitmapTransform(CenterInside()))
                     .into(bindingView.moviePoster)
             } else {
@@ -40,6 +43,15 @@ class MovieDetailsFragment : Fragment() {
             bindingView.movieOverview.text = movie_overview
         }
 
+        bindingView.toolbar.setOnClickListener(this)
         return bindingView.root
+    }
+
+    override fun onClick(v: View?) {
+        when(v?.id) {
+            R.id.toolbar -> {
+                findNavController().navigate(R.id.movie_home)
+            }
+        }
     }
 }
