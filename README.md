@@ -8,6 +8,8 @@
 
 A simple project for The Movie DB based on Kotlin MVVM with Navigation clean architecture.
 
+https://github.com/saidurcse/movie-db-kotlin/blob/main/app/src/main/assets/home.PNG
+
 ## Build Process
 
 Add your Movie db api url and image url with API key in local.properties file.
