@@ -14,7 +14,6 @@ import demo.movie.db.kotlin.network.MovieEndPoint
 import demo.movie.db.kotlin.network.RestServiceGenerator
 import demo.movie.db.kotlin.utils.SharedPreferencesHelper
 
-
 class HomeFragment : Fragment(), View.OnClickListener {
     private lateinit var bindingView: FragmentMoviedbHomeBinding
     private val adapter = MovieAdapter()
@@ -50,9 +49,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(clickedView: View) {
         when(clickedView.id) {
-            /*R.id.ic_arrow_back -> {
-                findNavController().navigate(R.id.splash_screen)
-            }*/
+
         }
     }
 }
