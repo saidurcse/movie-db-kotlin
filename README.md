@@ -3,10 +3,10 @@
   <content><![CDATA[
 # ${1:Project Name}
 
-[![License](https://camo.githubusercontent.com/c97d380d0a98377c53391026883a89c16ded751eb41f9e57a53e009664447d50/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d4d49542532304c6963656e73652d626c75652e737667)]
-[]![API Level](https://android-arsenal.com/api?level=16)]
+![License](https://camo.githubusercontent.com/c97d380d0a98377c53391026883a89c16ded751eb41f9e57a53e009664447d50/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c6963656e73652d4d49542532304c6963656e73652d626c75652e737667)
+![API Level](https://android-arsenal.com/api?level=21)]
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
-[![Github](https://github.com/saidurcse)](Saidur)
+![Github](https://github.com/saidurcse)(Saidur)
 
 
 A simple project for The Movie DB based on Kotlin MVVM with Navigation clean architecture.
