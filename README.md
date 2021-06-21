@@ -24,18 +24,18 @@ Based on Test-driven development.
 ## Specs & Open-source libraries
 
 
-    Minimum SDK 21
-    100% Kotlin based
-    MVVM Architecture
-    Architecture Components (Lifecycle, LiveData, ViewModel, Room Persistence)
-    DataBinding
-    Material Design & Animations
-    The Movie DB API
-    Retrofit2 & Gson for constructing the REST API
-    OkHttp3 for implementing interceptor, logging and mocking web server
-    Glide for loading images
-    BaseRecyclerViewAdapter for implementing adapters and viewHolders
-    Mockito-kotlin for Junit mock test
+    - Minimum SDK 21
+    - 100% Kotlin based
+    - MVVM Architecture
+    - Architecture Components (Lifecycle, LiveData, ViewModel, Room Persistence)
+    - DataBinding
+    - Material Design & Animations
+    - The Movie DB API
+    - Retrofit2 & Gson for constructing the REST API
+    - OkHttp3 for implementing interceptor, logging and mocking web server
+    - Glide for loading images
+    - BaseRecyclerViewAdapter for implementing adapters and viewHolders
+    - Mockito-kotlin for Junit mock test
 
 
 ## Contributing
@@ -48,6 +48,7 @@ Based on Test-driven development.
 
 ## License
 
+**
 The MIT License (MIT)
 
 Copyright (c) 2018 skydoves
@@ -69,6 +70,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+**
 
 </content>
 </snippet>
