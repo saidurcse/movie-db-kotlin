@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.request.RequestOptions
+import demo.movie.db.kotlin.BuildConfig
 import demo.movie.db.kotlin.R
 import demo.movie.db.kotlin.databinding.ItemMovieCardBinding
 import demo.movie.db.kotlin.ui.home.model.Movie
@@ -38,7 +39,7 @@ class MovieAdapter : ListAdapter<Movie, MovieAdapter.MovieListViewHolder>(MovieD
 
             if(movie.posterPath != null) {
                 Glide.with(itemMovieCardBinding.moviePoster)
-                    .load("https://image.tmdb.org/t/p/w780" + movie.posterPath)
+                    .load(BuildConfig.IMAGE_URL + movie.posterPath)
                     .apply(RequestOptions.bitmapTransform(CenterInside()))
                     .into(itemMovieCardBinding.moviePoster)
             } else {

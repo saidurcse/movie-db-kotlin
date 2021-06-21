@@ -122,7 +122,7 @@ def getImageUrl() {
     if(imageUrl == null)
         throw new FileNotFoundException("Add 'image_url' field at local.properties file.")
 
-    return apiUrl
+    return imageUrl
 }
 
 def getApiKey() {
@@ -133,5 +133,5 @@ def getApiKey() {
     if(apiKey == null)
         throw new FileNotFoundException("Add 'api_key' field at local.properties file.")
 
-    return apiUrl
+    return apiKey
 }
