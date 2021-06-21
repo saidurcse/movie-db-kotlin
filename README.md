@@ -46,7 +46,7 @@ Based on Test-driven development.
 
 ## Contributor
 
-![alt text](https://avatars.githubusercontent.com/u/6915467?v=4)
+![alt text](https://avatars.githubusercontent.com/u/6915467?s=460&v=4)
 
 ## Contributing
 
