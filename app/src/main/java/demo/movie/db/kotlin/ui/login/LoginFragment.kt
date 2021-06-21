@@ -30,8 +30,8 @@ class LoginFragment : Fragment(), View.OnClickListener {
     override fun onClick(clickedView: View) {
         when(clickedView.id) {
             R.id.login_button -> {
-                val user_email = "test@test.com"//bindingView.inputEmailId.text.toString()
-                val password = "123456"//bindingView.inputPassword.text.toString()
+                val user_email = bindingView.inputEmailId.text.toString()
+                val password = bindingView.inputPassword.text.toString()
 
                 if(user_email.equals(sharedPreferences.get(LOGIN_USEREMAIL, "")) && password.equals("123456")) {
                         findNavController().navigate(R.id.movie_home)
