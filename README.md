@@ -10,7 +10,9 @@ A simple project for The Movie DB based on Kotlin MVVM with Navigation clean arc
 Add your Movie db api url and image url with API key in local.properties file.
 
 api_url=https://api.themoviedb.org/
+
 image_url=https://image.tmdb.org/t/p/w780
+
 api_key=YOUR_API_KEY
 
 ## Development process
@@ -24,7 +26,7 @@ Based on Test-driven development.
 ## Specs & Open-source libraries
 
 
-    - Minimum SDK 21
+    > Minimum SDK 21
     - 100% Kotlin based
     - MVVM Architecture
     - Architecture Components (Lifecycle, LiveData, ViewModel, Room Persistence)
@@ -48,7 +50,7 @@ Based on Test-driven development.
 
 ## License
 
-**
+```sh
 The MIT License (MIT)
 
 Copyright (c) 2018 skydoves
@@ -70,7 +72,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-**
+```
 
 </content>
 </snippet>
