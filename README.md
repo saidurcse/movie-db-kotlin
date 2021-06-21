@@ -46,7 +46,7 @@ Based on Test-driven development.
 
 ## Contributor
 
-@all-contributors @saidur
+@all-contributors please add @<saidurcse> for <contributions>
 
 ## Contributing
 
