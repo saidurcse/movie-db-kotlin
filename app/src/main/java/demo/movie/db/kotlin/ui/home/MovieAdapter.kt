@@ -3,7 +3,9 @@ package demo.movie.db.kotlin.ui.home
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -43,6 +45,11 @@ class MovieAdapter : ListAdapter<Movie, MovieAdapter.MovieListViewHolder>(MovieD
                 itemMovieCardBinding.moviePoster.background = itemMovieCardBinding.moviePoster.context?.let{
                     ContextCompat.getDrawable(itemMovieCardBinding.moviePoster.context, R.drawable.ic_placeholder)
                 }
+            }
+
+            itemMovieCardBinding.movieLayout.setOnClickListener{
+                val bundle = bundleOf("movie_backdropPath" to movie.backdropPath, "movie_overview" to movie.overview)
+                itemView.findNavController().navigate(R.id.movie_details, bundle)
             }
         }
     }

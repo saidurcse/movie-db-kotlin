@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/login_screen"
         android:name="demo.movie.db.kotlin.ui.login.LoginFragment"
-        android:label="fragment_splash_screen"
+        android:label="fragment_moviedb_login"
         tools:layout="@layout/fragment_moviedb_login" >
         <action
             android:id="@+id/action_login_next"
@@ -20,11 +20,23 @@
     <fragment
         android:id="@+id/movie_home"
         android:name="demo.movie.db.kotlin.ui.home.HomeFragment"
-        android:label="fragment_patient_registration"
+        android:label="fragment_moviedb_home"
         tools:layout="@layout/fragment_moviedb_home" >
         <action
-            android:id="@+id/action_verification_next"
-            app:destination="@id/movie_home"
+            android:id="@+id/action_home_next"
+            app:destination="@id/movie_details"
+            app:popUpTo="@id/login_screen"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/movie_details"
+        android:name="demo.movie.db.kotlin.ui.details.MovieDetailsFragment"
+        android:label="fragment_moviedb_details"
+        tools:layout="@layout/fragment_moviedb_details" >
+        <action
+            android:id="@+id/action_moviedetails_next"
+            app:destination="@id/movie_details"
             app:popUpTo="@id/movie_home"
             app:popUpToInclusive="true"/>
     </fragment>
