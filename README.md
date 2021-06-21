@@ -1,4 +1,4 @@
-# movie-db-kotlin
+# Movie-db-kotlin
 <snippet>
   <content><![CDATA[
 # ${1:Project Name}
