@@ -46,7 +46,7 @@ Based on Test-driven development.
 
 ## Contributor
 
-[![](https://opencollective.com/html-react-parser/contributors.svg?width=890&button=false)](https://github.com/remarkablemark/html-react-parser/graphs/contributors)
+![alt text](https://avatars.githubusercontent.com/u/6915467?v=4)
 
 ## Contributing
 
