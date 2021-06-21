@@ -3,7 +3,8 @@
   <content><![CDATA[
 # ${1:Project Name}
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)[![Generic badge](https://img.shields.io/badge/<Github>-<Saidur>-<COLOR>.svg)](https://shields.io/)
+
 
 A simple project for The Movie DB based on Kotlin MVVM with Navigation clean architecture.
 
