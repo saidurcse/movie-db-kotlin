@@ -1,8 +1,16 @@
 package demo.movie.db.kotlin.ui.home.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+
+@Entity(tableName = "MovieData")
 data class Movie(
+
+	@PrimaryKey
+	@field:SerializedName("id")
+	val id: Int? = null,
 
 	@field:SerializedName("overview")
 	val overview: String? = null,
@@ -19,8 +27,9 @@ data class Movie(
 	@field:SerializedName("title")
 	val title: String? = null,
 
-	@field:SerializedName("genre_ids")
-	val genreIds: List<Int?>? = null,
+	/*Comment out the below line due to "Incremental annotation processing requested, but support is disabled issue"*/
+	/*@field:SerializedName("genre_ids")
+	val genreIds: List<Int?>? = null,*/
 
 	@field:SerializedName("poster_path")
 	val posterPath: String? = null,
@@ -36,9 +45,6 @@ data class Movie(
 
 	@field:SerializedName("vote_average")
 	val voteAverage: Double? = null,
-
-	@field:SerializedName("id")
-	val id: Int? = null,
 
 	@field:SerializedName("adult")
 	val adult: Boolean? = null,

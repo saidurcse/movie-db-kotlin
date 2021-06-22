@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import demo.movie.db.kotlin.MainActivity
+import demo.movie.db.kotlin.database.DatabaseSingleton
 import demo.movie.db.kotlin.databinding.FragmentMoviedbHomeBinding
 import demo.movie.db.kotlin.network.MovieEndPoint
 import demo.movie.db.kotlin.network.RestServiceGenerator
@@ -44,6 +45,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
         viewModel.movieList.observe(viewLifecycleOwner, Observer { movieList ->
             adapter.submitList(movieList)
+            DatabaseSingleton.GetDatabase(context)?.movieLocalDataDAO()?.AddAll(movieList)
         })
 
         return bindingView.root
