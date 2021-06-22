@@ -44,9 +44,9 @@ Based on Test-driven development.
     * BaseRecyclerViewAdapter for implementing adapters and viewHolders
     * Mockito-kotlin for Junit mock test
 
-## Contributor
+<!--## Contributor
 
-![alt text](https://avatars.githubusercontent.com/u/6915467?s=160&v=4)
+![alt text](https://avatars.githubusercontent.com/u/6915467?s=160&v=4)-->
 
 ## Contributing
 
