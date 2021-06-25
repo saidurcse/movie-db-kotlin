@@ -14,11 +14,16 @@ import demo.movie.db.kotlin.database.DatabaseSingleton
 import demo.movie.db.kotlin.databinding.FragmentMoviedbHomeBinding
 import demo.movie.db.kotlin.network.MovieEndPoint
 import demo.movie.db.kotlin.network.RestServiceGenerator
+import demo.movie.db.kotlin.ui.home.model.Movie
 import demo.movie.db.kotlin.utils.SharedPreferencesHelper
+import demo.movie.db.kotlin.utils.SharedPreferencesKey
+import java.util.*
 
 class HomeFragment : Fragment(), View.OnClickListener {
     private lateinit var bindingView: FragmentMoviedbHomeBinding
     private val adapter = MovieAdapter()
+    private lateinit var sharedPreferences: SharedPreferencesHelper
+    private var packageList: List<Movie> = ArrayList<Movie>()
 
     private val viewModel: HomeListViewModel by lazy {
         val endPoint = RestServiceGenerator.createService(MovieEndPoint::class.java)
@@ -31,6 +36,15 @@ class HomeFragment : Fragment(), View.OnClickListener {
         bindingView = FragmentMoviedbHomeBinding.inflate(layoutInflater, container, false)
         bindingView.viewModel = viewModel
         (requireActivity() as MainActivity).supportActionBar!!.hide()
+        sharedPreferences = SharedPreferencesHelper(requireContext())
+
+        if(sharedPreferences.get(SharedPreferencesKey.FIRST_TIME, false)!!) {
+            packageList = DatabaseSingleton.GetDatabase(activity)!!.movieLocalDataDAO()!!.Get() as List<Movie>
+            adapter.submitList(packageList)
+        } else {
+            viewModel.fetchMovieList()
+            sharedPreferences.put(SharedPreferencesKey.FIRST_TIME, true)
+        }
 
         bindingView.apply {
             listMovies.setHasFixedSize(true)

@@ -22,7 +22,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
         bindingView = FragmentMoviedbLoginBinding.inflate(layoutInflater, container, false)
         sharedPreferences = SharedPreferencesHelper(requireContext())
 
-        if(sharedPreferences.get(FIRST_TIME, false) == true) {
+        if(sharedPreferences.get(FIRST_TIME, false)!!) {
             findNavController().navigate(R.id.movie_home)
         } else {
             sharedPreferences.put(LOGIN_USEREMAIL, "test@test.com")
@@ -40,7 +40,6 @@ class LoginFragment : Fragment(), View.OnClickListener {
 
                 if(user_email.equals(sharedPreferences.get(LOGIN_USEREMAIL, "")) && password.equals("123456")) {
                         findNavController().navigate(R.id.movie_home)
-                        sharedPreferences.put(FIRST_TIME, true)
                 } else {
                     Toast.makeText(context, getString(R.string.user_email_password_is_wrong), Toast.LENGTH_LONG).show()
                 }

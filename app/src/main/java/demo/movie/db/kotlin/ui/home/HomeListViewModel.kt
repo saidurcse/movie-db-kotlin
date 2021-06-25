@@ -27,10 +27,10 @@ class HomeListViewModel(
     private val _showMessage = MutableLiveData<String>()
 
     init {
-        fetchMovieList()
+        //fetchMovieList()
     }
 
-    private fun fetchMovieList() {
+    fun fetchMovieList() {
         viewModelScope.launch {
             try {
                 dataLoading.set(true)
