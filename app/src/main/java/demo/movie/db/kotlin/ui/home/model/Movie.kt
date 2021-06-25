@@ -28,8 +28,8 @@ data class Movie(
 	val title: String? = null,
 
 	/*Comment out the below line due to "Incremental annotation processing requested, but support is disabled issue"*/
-	/*@field:SerializedName("genre_ids")
-	val genreIds: List<Int?>? = null,*/
+	@field:SerializedName("genre_ids")
+	val genreIds: List<Int?>? = null,
 
 	@field:SerializedName("poster_path")
 	val posterPath: String? = null,

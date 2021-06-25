@@ -8,6 +8,7 @@ object DatabaseSingleton {
     fun GetDatabase(context: Context?): MyAppDataBase? {
         if (myAppDataBase == null) myAppDataBase = Room.databaseBuilder(context!!, MyAppDataBase::class.java, "MovieDB")
             .allowMainThreadQueries()
+            .fallbackToDestructiveMigration()
             .build()
         return myAppDataBase
     }
