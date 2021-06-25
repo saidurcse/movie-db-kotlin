@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import demo.movie.db.kotlin.R
 import demo.movie.db.kotlin.databinding.FragmentMoviedbLoginBinding
 import demo.movie.db.kotlin.utils.SharedPreferencesHelper
+import demo.movie.db.kotlin.utils.SharedPreferencesKey.FIRST_TIME
 import demo.movie.db.kotlin.utils.SharedPreferencesKey.LOGIN_USEREMAIL
 
 class LoginFragment : Fragment(), View.OnClickListener {
@@ -21,7 +22,11 @@ class LoginFragment : Fragment(), View.OnClickListener {
         bindingView = FragmentMoviedbLoginBinding.inflate(layoutInflater, container, false)
         sharedPreferences = SharedPreferencesHelper(requireContext())
 
-        sharedPreferences.put(LOGIN_USEREMAIL, "test@test.com")
+        if(sharedPreferences.get(FIRST_TIME, false) == true) {
+            findNavController().navigate(R.id.movie_home)
+        } else {
+            sharedPreferences.put(LOGIN_USEREMAIL, "test@test.com")
+        }
 
         bindingView.loginButton.setOnClickListener(this)
         return bindingView.root
@@ -30,11 +35,12 @@ class LoginFragment : Fragment(), View.OnClickListener {
     override fun onClick(clickedView: View) {
         when(clickedView.id) {
             R.id.login_button -> {
-                val user_email = "test@test.com"//bindingView.inputEmailId.text.toString()
-                val password = "123456"//bindingView.inputPassword.text.toString()
+                val user_email = bindingView.inputEmailId.text.toString()
+                val password = bindingView.inputPassword.text.toString()
 
                 if(user_email.equals(sharedPreferences.get(LOGIN_USEREMAIL, "")) && password.equals("123456")) {
                         findNavController().navigate(R.id.movie_home)
+                        sharedPreferences.put(FIRST_TIME, true)
                 } else {
                     Toast.makeText(context, getString(R.string.user_email_password_is_wrong), Toast.LENGTH_LONG).show()
                 }
