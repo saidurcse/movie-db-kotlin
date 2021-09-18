@@ -90,11 +90,22 @@ dependencies {
 
     //Room
     implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
     kapt("androidx.room:room-compiler:$room_version")
 
     // Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+    configurations {
+        compile.exclude group: 'org.jetbrains.kotlinx', module: 'atomicfu-common'
+    }
+
+    // lifecycle
+    kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
 
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
@@ -104,6 +115,11 @@ dependencies {
     //Image Library
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
+    // Koin for the dependencies injections
+    implementation "org.koin:koin-android:$coin_version"
+    implementation "org.koin:koin-android-viewmodel:$coin_version"
+    implementation "org.koin:koin-androidx-scope:$coin_version"
 
     // Testing
     androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
