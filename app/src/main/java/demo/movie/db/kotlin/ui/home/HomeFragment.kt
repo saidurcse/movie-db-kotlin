@@ -18,7 +18,7 @@ import java.util.*
 
 class HomeFragment : Fragment(), View.OnClickListener {
 
-    private val mobiesViewModel by viewModel<HomeListViewModel>()
+    private val moviesViewModel by viewModel<HomeListViewModel>()
     private lateinit var bindingView: FragmentMoviedbHomeBinding
     private val adapter = MovieAdapter()
     //private val dao: MovieLocalDataDAO = TODO()
@@ -29,16 +29,16 @@ class HomeFragment : Fragment(), View.OnClickListener {
                               savedInstanceState: Bundle?): View {
         bindingView = FragmentMoviedbHomeBinding.inflate(layoutInflater, container, false)
         bindingView.lifecycleOwner = this
-        bindingView.viewModel = mobiesViewModel
+        bindingView.viewModel = moviesViewModel
         (requireActivity() as MainActivity).supportActionBar!!.hide()
         sharedPreferences = SharedPreferencesHelper(requireContext())
 
         if(sharedPreferences.get(SharedPreferencesKey.FIRST_TIME, false)!!) {
             //packageList = dao.Get() as List<Movie>
             //adapter.submitList(packageList)
-            mobiesViewModel.fetchMovieList()
+            moviesViewModel.fetchMovieList()
         } else {
-            mobiesViewModel.fetchMovieList()
+            moviesViewModel.fetchMovieList()
             sharedPreferences.put(SharedPreferencesKey.FIRST_TIME, true)
         }
 
@@ -49,7 +49,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
             listMovies.adapter = adapter
         }
 
-        mobiesViewModel.movieList.observe(viewLifecycleOwner, Observer { movieList ->
+        moviesViewModel.movieList.observe(viewLifecycleOwner, Observer { movieList ->
             adapter.submitList(movieList)
             //dao.AddAll(movieList)
         })
