@@ -15,7 +15,6 @@ import kotlinx.coroutines.launch
 class HomeListViewModel(private val repository : MoviesRepository) : ViewModel() {
 
     val dataLoading = ObservableBoolean(false)
-    /*val movieList = MutableLiveData<RestListResponse<Movie>>()*/
     val movieList: LiveData<List<Movie>>
         get() = _movieList
     private var _movieList = MutableLiveData<List<Movie>>()
