@@ -34,7 +34,7 @@ class HomeListViewModel(private val repository : MoviesRepository) : ViewModel()
             when (result) {
                 is AppResult.Success -> {
                     _movieList.value = result.successData.results
-                    showError.value = null!!
+                    showError.value = null
                 }
                 is AppResult.Error -> showError.value = result.exception.message
             }

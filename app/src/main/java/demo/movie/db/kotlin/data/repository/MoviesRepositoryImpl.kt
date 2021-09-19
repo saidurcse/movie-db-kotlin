@@ -15,8 +15,24 @@ import demo.movie.db.kotlin.utils.noNetworkConnectivityError
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class MoviesRepositoryImpl (private val api: MovieApi) : MoviesRepository {
+class MoviesRepositoryImpl (private val api: MovieApi, private val context: Context,
+                            private val dao: MovieLocalDataDAO) : MoviesRepository {
 
-    override suspend fun getAllMovies(): AppResult<RestListResponse<Movie>> = api.getMovieList()
-
+    override suspend fun getAllMovies(): AppResult<RestListResponse<Movie>> {
+        return try {
+            val response = api.getMovieList()
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    withContext(Dispatchers.IO) {
+                        dao.AddAll(it.results)
+                    }
+                }
+                handleSuccess(response)
+            } else {
+                handleApiError(response)
+            }
+        } catch (e: Exception) {
+            AppResult.Error(e)
+        }
+    }
 }

@@ -10,5 +10,5 @@ import retrofit2.http.Query
 
 interface MovieApi {
     @GET("3/discover/movie")  // get_movie_list
-    suspend fun getMovieList(@Query("api_key") apiKey: String = BuildConfig.API_KEY): AppResult<RestListResponse<Movie>>
+    suspend fun getMovieList(@Query("api_key") apiKey: String = BuildConfig.API_KEY): Response<RestListResponse<Movie>>
 }

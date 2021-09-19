@@ -36,6 +36,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         if(sharedPreferences.get(SharedPreferencesKey.FIRST_TIME, false)!!) {
             //packageList = dao.Get() as List<Movie>
             //adapter.submitList(packageList)
+            mobiesViewModel.fetchMovieList()
         } else {
             mobiesViewModel.fetchMovieList()
             sharedPreferences.put(SharedPreferencesKey.FIRST_TIME, true)
