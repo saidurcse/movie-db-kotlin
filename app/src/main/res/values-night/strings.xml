@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="no_network_connectivity">No Network Connectivity</string>
     <string name="login">Login</string>
     <string name="email_id">Email Id</string>
     <string name="password">Password</string>

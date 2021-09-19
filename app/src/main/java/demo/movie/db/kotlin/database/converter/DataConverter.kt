@@ -1,4 +1,4 @@
-package demo.movie.db.kotlin.database
+package demo.movie.db.kotlin.database.converter
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson

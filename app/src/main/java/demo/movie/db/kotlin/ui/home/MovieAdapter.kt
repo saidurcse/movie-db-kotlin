@@ -15,7 +15,7 @@ import com.bumptech.glide.request.RequestOptions
 import demo.movie.db.kotlin.BuildConfig
 import demo.movie.db.kotlin.R
 import demo.movie.db.kotlin.databinding.ItemMovieCardBinding
-import demo.movie.db.kotlin.ui.home.model.Movie
+import demo.movie.db.kotlin.data.model.Movie
 
 class MovieAdapter : ListAdapter<Movie, MovieAdapter.MovieListViewHolder>(MovieDiffCallback){
 

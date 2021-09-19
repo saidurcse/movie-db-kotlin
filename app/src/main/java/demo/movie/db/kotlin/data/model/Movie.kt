@@ -1,4 +1,4 @@
-package demo.movie.db.kotlin.ui.home.model
+package demo.movie.db.kotlin.data.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

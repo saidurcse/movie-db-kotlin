@@ -1,4 +1,4 @@
-package demo.movie.db.kotlin.model
+package demo.movie.db.kotlin.data.api.model
 
 data class RestListResponse<T> (
     val results: MutableList<T>,

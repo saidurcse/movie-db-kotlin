@@ -6,7 +6,7 @@
     <data>
         <variable
             name="movie"
-            type="demo.movie.db.kotlin.ui.home.model.Movie" />
+            type="demo.movie.db.kotlin.data.model.Movie" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
