@@ -21,9 +21,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private val moviesViewModel by viewModel<HomeListViewModel>()
     private lateinit var bindingView: FragmentMoviedbHomeBinding
     private val adapter = MovieAdapter()
-    //private val dao: MovieLocalDataDAO = TODO()
     private lateinit var sharedPreferences: SharedPreferencesHelper
-    private var packageList: List<Movie> = ArrayList<Movie>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
@@ -34,9 +32,9 @@ class HomeFragment : Fragment(), View.OnClickListener {
         sharedPreferences = SharedPreferencesHelper(requireContext())
 
         if(sharedPreferences.get(SharedPreferencesKey.FIRST_TIME, false)!!) {
-            //packageList = dao.Get() as List<Movie>
-            //adapter.submitList(packageList)
-            moviesViewModel.fetchMovieList()
+            moviesViewModel.getAllOfflineDB().observe(viewLifecycleOwner, Observer {
+                adapter.submitList(it)
+            })
         } else {
             moviesViewModel.fetchMovieList()
             sharedPreferences.put(SharedPreferencesKey.FIRST_TIME, true)
@@ -51,14 +49,8 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
         moviesViewModel.movieList.observe(viewLifecycleOwner, Observer { movieList ->
             adapter.submitList(movieList)
-            //dao.AddAll(movieList)
         })
 
-        /*moviesViewModel.movieList.observe(viewLifecycleOwner, Observer {
-            if (it.isNotEmpty() && it != null) {
-                adapter.submitList(it)
-            }
-        })*/
 
         return bindingView.root
     }

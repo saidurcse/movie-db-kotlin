@@ -24,6 +24,8 @@ class HomeListViewModel(private val repository : MoviesRepository) : ViewModel()
         //fetchMovieList()
     }
 
+    fun getAllOfflineDB(): LiveData<List<Movie>> = repository.getAllOfflineDB()
+
     fun fetchMovieList() {
         dataLoading.set(true)
         viewModelScope.launch {

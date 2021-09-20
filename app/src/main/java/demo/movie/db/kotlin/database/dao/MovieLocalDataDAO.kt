@@ -1,5 +1,6 @@
 package demo.movie.db.kotlin.database.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -13,5 +14,5 @@ interface MovieLocalDataDAO {
     fun AddAll(data: List<Movie?>?)
 
     @Query("Select * from MovieData")
-    fun Get(): List<Movie?>?
+    fun Get(): LiveData<List<Movie>>
 }

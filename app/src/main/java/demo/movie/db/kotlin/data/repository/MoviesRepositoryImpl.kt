@@ -2,6 +2,7 @@ package demo.movie.db.kotlin.data.repository
 
 import android.content.Context
 import android.util.Log
+import androidx.lifecycle.LiveData
 import demo.movie.db.kotlin.data.api.MovieApi
 import demo.movie.db.kotlin.data.api.model.RestListResponse
 import demo.movie.db.kotlin.data.model.Movie
@@ -33,5 +34,9 @@ class MoviesRepositoryImpl (private val api: MovieApi, private val dao: MovieLoc
         } catch (e: Exception) {
             AppResult.Error(e)
         }
+    }
+
+    override fun getAllOfflineDB(): LiveData<List<Movie>> {
+        return dao.Get()
     }
 }
