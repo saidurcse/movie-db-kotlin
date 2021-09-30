@@ -14,16 +14,18 @@ import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.request.RequestOptions
 import demo.movie.db.kotlin.BuildConfig
 import demo.movie.db.kotlin.R
-import demo.movie.db.kotlin.databinding.ItemMovieCardBinding
 import demo.movie.db.kotlin.data.model.Movie
+import demo.movie.db.kotlin.databinding.ItemMovieCardBinding
 
-class MovieAdapter : ListAdapter<Movie, MovieAdapter.MovieListViewHolder>(MovieDiffCallback){
+class MovieAdapter : ListAdapter<Movie, MovieAdapter.MovieListViewHolder>(MovieDiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieListViewHolder {
         val mContext = parent.context
         val inflater = LayoutInflater.from(mContext)
-        val bindingView = DataBindingUtil.inflate<ItemMovieCardBinding>(inflater,
-            R.layout.item_movie_card, parent, false)
+        val bindingView = DataBindingUtil.inflate<ItemMovieCardBinding>(
+            inflater,
+            R.layout.item_movie_card, parent, false
+        )
         return MovieListViewHolder(bindingView)
     }
 
@@ -31,39 +33,47 @@ class MovieAdapter : ListAdapter<Movie, MovieAdapter.MovieListViewHolder>(MovieD
         holder.dataBind(getItem(position))
     }
 
-    inner class MovieListViewHolder(private val itemMovieCardBinding: ItemMovieCardBinding)
-        : RecyclerView.ViewHolder(itemMovieCardBinding.root) {
+    inner class MovieListViewHolder(private val itemMovieCardBinding: ItemMovieCardBinding) :
+        RecyclerView.ViewHolder(itemMovieCardBinding.root) {
 
         fun dataBind(movie: Movie) {
             itemMovieCardBinding.movie = movie
 
-            if(movie.posterPath != null) {
+            if (movie.posterPath != null) {
                 Glide.with(itemMovieCardBinding.moviePoster)
                     .load(BuildConfig.IMAGE_URL + movie.posterPath)
                     .apply(RequestOptions.bitmapTransform(CenterInside()))
                     .into(itemMovieCardBinding.moviePoster)
             } else {
-                itemMovieCardBinding.moviePoster.background = itemMovieCardBinding.moviePoster.context?.let{
-                    ContextCompat.getDrawable(itemMovieCardBinding.moviePoster.context, R.drawable.ic_placeholder)
-                }
+                itemMovieCardBinding.moviePoster.background =
+                    itemMovieCardBinding.moviePoster.context?.let {
+                        ContextCompat.getDrawable(
+                            itemMovieCardBinding.moviePoster.context,
+                            R.drawable.ic_placeholder
+                        )
+                    }
             }
 
-            itemMovieCardBinding.movieLayout.setOnClickListener{
-                val bundle = bundleOf("movie_backdropPath" to movie.backdropPath, "movie_overview" to movie.overview)
+            itemMovieCardBinding.movieLayout.setOnClickListener {
+                val bundle = bundleOf(
+                    "movie_backdropPath" to movie.backdropPath,
+                    "movie_overview" to movie.overview
+                )
                 itemView.findNavController().navigate(R.id.movie_details, bundle)
             }
         }
     }
 
     companion object {
-        private val MovieDiffCallback: DiffUtil.ItemCallback<Movie> = object : DiffUtil.ItemCallback<Movie>() {
-            override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
-                return oldItem.id == oldItem.id
-            }
+        private val MovieDiffCallback: DiffUtil.ItemCallback<Movie> =
+            object : DiffUtil.ItemCallback<Movie>() {
+                override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+                    return oldItem.id == oldItem.id
+                }
 
-            override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
-                return oldItem == newItem
+                override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+                    return oldItem == newItem
+                }
             }
-        }
     }
 }

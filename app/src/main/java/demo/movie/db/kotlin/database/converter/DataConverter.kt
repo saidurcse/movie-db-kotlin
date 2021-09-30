@@ -5,7 +5,7 @@ import com.google.gson.Gson
 import java.io.Serializable
 
 
-class DataConverter : Serializable{
+class DataConverter : Serializable {
 
     @TypeConverter
     fun listToJson(value: List<Int>?) = Gson().toJson(value)

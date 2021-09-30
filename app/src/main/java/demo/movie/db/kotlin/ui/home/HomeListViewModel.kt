@@ -5,16 +5,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import demo.movie.db.kotlin.data.api.model.RestListResponse
 import demo.movie.db.kotlin.data.model.Movie
 import demo.movie.db.kotlin.data.repository.MoviesRepository
 import demo.movie.db.kotlin.utils.AppResult
 import demo.movie.db.kotlin.utils.SingleLiveEvent
 import kotlinx.coroutines.launch
 
-class HomeListViewModel(private val repository : MoviesRepository) : ViewModel() {
+class HomeListViewModel(private val repository: MoviesRepository) : ViewModel() {
 
     val dataLoading = ObservableBoolean(false)
+
+    val offlineMovieList = MutableLiveData<List<Movie>>()
+
     val movieList: LiveData<List<Movie>>
         get() = _movieList
     private var _movieList = MutableLiveData<List<Movie>>()
@@ -24,7 +26,9 @@ class HomeListViewModel(private val repository : MoviesRepository) : ViewModel()
         //fetchMovieList()
     }
 
-    fun getAllOfflineDB(): LiveData<List<Movie>> = repository.getAllOfflineDB()
+    fun getAllOfflineDB(){
+        offlineMovieList.value = repository.getAllOfflineDB().value
+    }
 
     fun fetchMovieList() {
         dataLoading.set(true)

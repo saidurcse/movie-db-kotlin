@@ -10,14 +10,14 @@ import org.koin.dsl.module
 val databaseModule = module {
 
     fun provideDatabase(application: Application): MovieDataBase {
-       return Room.databaseBuilder(application, MovieDataBase::class.java, "MovieDB")
+        return Room.databaseBuilder(application, MovieDataBase::class.java, "MovieDB")
             .allowMainThreadQueries()
             .fallbackToDestructiveMigration()
             .build()
     }
 
     fun provideMoviesDao(database: MovieDataBase): MovieLocalDataDAO {
-        return  database.movieLocalDataDAO
+        return database.movieLocalDataDAO
     }
 
     single { provideDatabase(androidApplication()) }

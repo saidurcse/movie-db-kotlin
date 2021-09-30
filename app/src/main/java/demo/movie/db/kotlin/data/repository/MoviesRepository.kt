@@ -6,6 +6,6 @@ import demo.movie.db.kotlin.data.model.Movie
 import demo.movie.db.kotlin.utils.AppResult
 
 interface MoviesRepository {
-    suspend fun getAllMovies() : AppResult<RestListResponse<Movie>>
+    suspend fun getAllMovies(): AppResult<RestListResponse<Movie>>
     fun getAllOfflineDB(): LiveData<List<Movie>>
 }

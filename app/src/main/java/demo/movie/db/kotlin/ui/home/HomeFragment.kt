@@ -9,12 +9,10 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import demo.movie.db.kotlin.MainActivity
-import demo.movie.db.kotlin.data.model.Movie
 import demo.movie.db.kotlin.databinding.FragmentMoviedbHomeBinding
 import demo.movie.db.kotlin.utils.SharedPreferencesHelper
 import demo.movie.db.kotlin.utils.SharedPreferencesKey
 import org.koin.android.viewmodel.ext.android.viewModel
-import java.util.*
 
 class HomeFragment : Fragment(), View.OnClickListener {
 
@@ -23,16 +21,18 @@ class HomeFragment : Fragment(), View.OnClickListener {
     private val adapter = MovieAdapter()
     private lateinit var sharedPreferences: SharedPreferencesHelper
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         bindingView = FragmentMoviedbHomeBinding.inflate(layoutInflater, container, false)
         bindingView.lifecycleOwner = this
         bindingView.viewModel = moviesViewModel
         (requireActivity() as MainActivity).supportActionBar!!.hide()
         sharedPreferences = SharedPreferencesHelper(requireContext())
 
-        if(sharedPreferences.get(SharedPreferencesKey.FIRST_TIME, false)!!) {
-            moviesViewModel.getAllOfflineDB().observe(viewLifecycleOwner, Observer {
+        if (sharedPreferences.get(SharedPreferencesKey.FIRST_TIME, false)!!) {
+            moviesViewModel.offlineMovieList.observe(viewLifecycleOwner, Observer {
                 adapter.submitList(it)
             })
         } else {
@@ -56,7 +56,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(clickedView: View) {
-        when(clickedView.id) {
+        when (clickedView.id) {
 
         }
     }

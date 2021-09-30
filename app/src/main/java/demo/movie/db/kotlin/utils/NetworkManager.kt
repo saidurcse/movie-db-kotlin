@@ -9,7 +9,8 @@ import android.os.Build
 object NetworkManager {
     fun isOnline(context: Context): Boolean {
         var result = false
-        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             connectivityManager?.run {
                 connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)?.run {

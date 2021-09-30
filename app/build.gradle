@@ -65,13 +65,19 @@ android {
         }
     }
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+    packagingOptions {
+        merge "META-INF/LICENSE"
+        merge "META-INF/AL2.0"
+        merge "META-INF/LGPL2.1"
     }
 
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -139,6 +145,11 @@ dependencies {
     testImplementation "org.robolectric:robolectric:$robolectricVersion"
     testImplementation "androidx.arch.core:core-testing:$archTestingVersion"
     testImplementation "org.hamcrest:hamcrest-all:$hamcrestVersion"
+    testImplementation "com.nhaarman:mockito-kotlin:1.6.0"
+    androidTestImplementation "com.nhaarman:mockito-kotlin:1.6.0"
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.0"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.0"
 }
 
 def getApiUrl() {
