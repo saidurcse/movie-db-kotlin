@@ -28,7 +28,6 @@ import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
 import org.mockito.junit.MockitoJUnitRunner
 
-
 @RunWith(MockitoJUnitRunner::class)
 class HomeListViewModelTest {
     private val repository: MoviesRepository = mock(MoviesRepository::class.java)
@@ -152,7 +151,6 @@ class HomeListViewModelTest {
         total_pages = 0,
         total_results = 0
     )
-
 
     private fun mockMovieData() = listOf(
         Movie(title = "Test movie1"),
