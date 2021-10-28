@@ -30,7 +30,6 @@ Based on Test-driven development.
 
 ## Specs & Open-source libraries
 
-
     * Minimum SDK 21
     * 100% Kotlin based
     * MVVM Architecture
@@ -42,6 +41,7 @@ Based on Test-driven development.
     * OkHttp3 for implementing interceptor, logging and mocking web server
     * Glide for loading images
     * BaseRecyclerViewAdapter for implementing adapters and viewHolders
+    * Koin and Dagger version
     * Mockito-kotlin for Junit mock test
 
 <!--## Contributor
