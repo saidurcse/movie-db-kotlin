@@ -22,7 +22,7 @@ api_key=YOUR_API_KEY
 
 ## Development process
 
-Based on Test-driven development.
+<!Based on Test-driven development.-->
 
     1) API Service -> API Service Unit Test with api response mock files
     2) ViewModel -> ViewModel Unit Test
