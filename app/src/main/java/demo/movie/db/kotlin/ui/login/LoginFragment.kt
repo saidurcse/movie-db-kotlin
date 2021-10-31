@@ -26,7 +26,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
         mEmailValidator = EmailValidator()
         bindingView.inputEmailId.addTextChangedListener(mEmailValidator)
 
-        if(sharedPreferences.get(FIRST_TIME, false)!!) {
+        if(sharedPreferences[FIRST_TIME, false]!!) {
             findNavController().navigate(R.id.movie_home)
         } else {
             sharedPreferences.put(LOGIN_USEREMAIL, "test@test.com")

@@ -39,7 +39,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         sharedPreferences = SharedPreferencesHelper(requireContext())
 
         if(sharedPreferences.get(SharedPreferencesKey.FIRST_TIME, false)!!) {
-            packageList = DatabaseSingleton.GetDatabase(activity)!!.movieLocalDataDAO()!!.Get() as List<Movie>
+            packageList = DatabaseSingleton.getDatabase(activity)!!.movieLocalDataDAO()!!.getList() as List<Movie>
             adapter.submitList(packageList)
         } else {
             viewModel.fetchMovieList()
@@ -59,7 +59,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
         viewModel.movieList.observe(viewLifecycleOwner, Observer { movieList ->
             adapter.submitList(movieList)
-            DatabaseSingleton.GetDatabase(context)?.movieLocalDataDAO()?.AddAll(movieList)
+            DatabaseSingleton.getDatabase(context)?.movieLocalDataDAO()?.addAll(movieList)
         })
 
         return bindingView.root

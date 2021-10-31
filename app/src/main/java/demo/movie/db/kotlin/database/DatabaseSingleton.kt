@@ -5,7 +5,8 @@ import androidx.room.Room
 
 object DatabaseSingleton {
     private var myAppDataBase: MyAppDataBase? = null
-    fun GetDatabase(context: Context?): MyAppDataBase? {
+
+    fun getDatabase(context: Context?): MyAppDataBase? {
         if (myAppDataBase == null) myAppDataBase = Room.databaseBuilder(context!!, MyAppDataBase::class.java, "MovieDB")
             .allowMainThreadQueries()
             .fallbackToDestructiveMigration()

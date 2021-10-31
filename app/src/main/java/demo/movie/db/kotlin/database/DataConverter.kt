@@ -4,7 +4,6 @@ import androidx.room.TypeConverter
 import com.google.gson.Gson
 import java.io.Serializable
 
-
 class DataConverter : Serializable{
 
     @TypeConverter

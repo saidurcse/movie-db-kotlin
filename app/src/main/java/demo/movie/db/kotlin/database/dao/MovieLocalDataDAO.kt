@@ -10,8 +10,8 @@ import demo.movie.db.kotlin.ui.home.model.Movie
 interface MovieLocalDataDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun AddAll(data: List<Movie?>?)
+    fun addAll(data: List<Movie?>?)
 
     @Query("Select * from MovieData")
-    fun Get(): List<Movie?>?
+    fun getList(): List<Movie?>?
 }
