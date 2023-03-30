@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id("io.gitlab.arturbosch.detekt").version("[1.19.0]")
 }
 
 android {
@@ -153,4 +154,8 @@ def getApiKey() {
         throw new FileNotFoundException("Add 'api_key' field at local.properties file.")
 
     return apiKey
+}
+
+detekt {
+    ignoreFailures = true
 }
