@@ -1,12 +1,16 @@
 package demo.movie.db.kotlin
 
-import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.typeText
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
-
+import org.junit.Assert.*
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-
-import org.junit.Assert.*
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -15,10 +19,20 @@ import org.junit.Assert.*
  */
 @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
+
+    val STRING_TO_BE_TYPED = "Espresso"
+
+    /**
+     * Use [ActivityScenarioRule] to create and launch the activity under test.
+     */
+    @get:Rule
+    var activityScenarioRule: ActivityScenarioRule<MainActivity> = ActivityScenarioRule<MainActivity>(MainActivity::class.java)
+
     @Test
-    fun useAppContext() {
-        // Context of the app under test.
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("demo.movie.db.kotlin", appContext.packageName)
+    public fun greeterSaysHello() {
+        onView(withId(R.id.movie_title)).perform(typeText("Avatar"))
+        onView(withId(R.id.movie_layout)).perform(click())
+        onView(withText("Avatar")).check(matches(isDisplayed()))
     }
+
 }
