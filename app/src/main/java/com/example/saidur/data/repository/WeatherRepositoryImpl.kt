@@ -13,9 +13,9 @@ import kotlinx.coroutines.withContext
 class WeatherRepositoryImpl(private val api: WeatherApi, private val dao: WeatherLocalDataDAO) :
     WeatherRepository {
 
-    override suspend fun getWeatherDataInfo(): AppResult<WeatherInfoResponse> {
+    override suspend fun getWeatherDataInfo(lat: String, lon: String): AppResult<WeatherInfoResponse> {
         return try {
-            val response = api.getWeatherData("32.8140", "96.9489")
+            val response = api.getWeatherData(lat, lon)
             if (response.isSuccessful) {
                 response.body()?.let {
                     withContext(Dispatchers.IO) {

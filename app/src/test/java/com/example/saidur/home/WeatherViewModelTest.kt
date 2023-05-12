@@ -7,6 +7,7 @@ import com.nhaarman.mockito_kotlin.argumentCaptor
 import com.nhaarman.mockito_kotlin.reset
 import com.nhaarman.mockito_kotlin.verify
 import com.example.saidur.data.api.model.RestListResponse
+import com.example.saidur.data.model.WeatherInfoResponse
 import com.example.saidur.data.repository.WeatherRepository
 import com.example.saidur.ui.home.WeatherViewModel
 import com.example.saidur.getOrAwaitValue
@@ -43,10 +44,10 @@ class WeatherViewModelTest {
     var mainCoroutineRule = MainCoroutineRule()
 
     @Mock
-    lateinit var offlineMovieListObserver: Observer<List<Weather>>
+    lateinit var offlineMovieListObserver: Observer<WeatherInfoResponse>
 
     @Mock
-    lateinit var movieListObserver: Observer<List<Weather>>
+    lateinit var movieListObserver: Observer<WeatherInfoResponse>
 
     @Mock
     lateinit var showErrorObserver: Observer<String>
@@ -57,7 +58,7 @@ class WeatherViewModelTest {
         viewModel = WeatherViewModel(repository)
 
         viewModel.offlineMovieList.observeForever(offlineMovieListObserver)
-        viewModel.movieList.observeForever(movieListObserver)
+        viewModel.weatherData.observeForever(movieListObserver)
         viewModel.showError.observeForever(showErrorObserver)
     }
 
@@ -71,17 +72,16 @@ class WeatherViewModelTest {
     @Test
     fun `should get data from DB`() {
         // given
-        val dataResponse = MutableLiveData<List<Weather>>()
+        val dataResponse = MutableLiveData<WeatherInfoResponse>()
         dataResponse.value = mockMovieData()
 
         `when`(repository.getAllOfflineDB()).thenReturn(dataResponse)
-
 
         // when
         viewModel.getAllOfflineDB()
 
         // then
-        val observeOfflineMovieListCapture = argumentCaptor<List<Weather>>()
+        val observeOfflineMovieListCapture = argumentCaptor<WeatherInfoResponse>()
         viewModel.offlineMovieList.getOrAwaitValue()
         verify(offlineMovieListObserver).onChanged(observeOfflineMovieListCapture.capture())
 
@@ -96,17 +96,17 @@ class WeatherViewModelTest {
         runBlocking {
             launch(Dispatchers.Main) {
                 // given
-                val dataResponse = MutableLiveData<List<Weather>>()
+                val dataResponse = MutableLiveData<WeatherInfoResponse>()
                 dataResponse.value = mockMovieData()
 
-                `when`(repository.getAllMovies()).thenReturn(AppResult.Success(getMockApiData()))
+                `when`(repository.getWeatherDataInfo()).thenReturn(AppResult.Success(getMockApiData()))
 
                 // when
-                viewModel.fetchMovieList()
+                viewModel.fetchWeatherData("32.8140", "96.9489")
 
                 // then
-                val observeMovieListCapture = argumentCaptor<List<Weather>>()
-                viewModel.movieList.getOrAwaitValue()
+                val observeMovieListCapture = argumentCaptor<WeatherInfoResponse>()
+                viewModel.weatherData.getOrAwaitValue()
                 verify(movieListObserver).onChanged(observeMovieListCapture.capture())
 
                 assertEquals(
@@ -129,10 +129,10 @@ class WeatherViewModelTest {
         runBlocking {
             launch(Dispatchers.Main) {
                 // given
-                `when`(repository.getAllMovies()).thenReturn(AppResult.Error(Exception("Error!")))
+                `when`(repository.getWeatherDataInfo()).thenReturn(AppResult.Error(Exception("Error!")))
 
                 // when
-                viewModel.fetchMovieList()
+                viewModel.fetchWeatherData("32.8140", "96.9489")
 
                 // then
                 val observeErrorCapture = argumentCaptor<String>()

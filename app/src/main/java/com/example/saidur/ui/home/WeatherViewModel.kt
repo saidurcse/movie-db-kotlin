@@ -30,10 +30,10 @@ class WeatherViewModel(private val repository: WeatherRepository) : ViewModel() 
         offlineMovieList.value = repository.getAllOfflineDB().value
     }
 
-    fun fetchWeatherData() {
+    fun fetchWeatherData(lat: String, lon: String) {
         dataLoading.set(true)
         viewModelScope.launch {
-            val result = repository.getWeatherDataInfo()
+            val result = repository.getWeatherDataInfo(lat, lon)
 
             dataLoading.set(false)
             when (result) {

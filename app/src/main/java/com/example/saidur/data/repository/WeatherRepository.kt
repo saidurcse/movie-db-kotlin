@@ -5,6 +5,6 @@ import com.example.saidur.data.model.WeatherInfoResponse
 import com.example.saidur.utils.AppResult
 
 interface WeatherRepository {
-    suspend fun getWeatherDataInfo(): AppResult<WeatherInfoResponse>
+    suspend fun getWeatherDataInfo(lat: String, lon: String): AppResult<WeatherInfoResponse>
     fun getAllOfflineDB(): LiveData<WeatherInfoResponse>
 }

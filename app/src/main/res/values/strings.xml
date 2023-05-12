@@ -10,4 +10,9 @@
     <string name="label_visibility">Visibility</string>
     <string name="label_sunrise">Sunrise</string>
     <string name="label_sunset">Sunset</string>
+    <string name="input_usa_city_only">Input USA City only</string>
+    <string name="location_permission_needed">Location Permission Needed</string>
+    <string name="location_permission_accept">This app needs the Location permission, please accept to use location functionality.</string>
+    <string name="permission_disabled">Permission Disabled.</string>
+    <string name="ok">Ok</string>
 </resources>
