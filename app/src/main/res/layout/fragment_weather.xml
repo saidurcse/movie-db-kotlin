@@ -105,13 +105,13 @@
                 tools:text="Invalid App ID"
                 tools:visibility="visible" />
 
-            <androidx.constraintlayout.widget.Group
+            <!--<androidx.constraintlayout.widget.Group
                 android:id="@+id/output_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
                 tools:visibility="visible"
-                app:constraint_referenced_ids="layout_weather_basic,layout_weather_additional,layout_sunset_sunrise" />
+                app:constraint_referenced_ids="layout_weather_basic,layout_weather_additional,layout_sunset_sunrise" />-->
 
             <androidx.core.widget.ContentLoadingProgressBar
                 android:layout_width="wrap_content"
