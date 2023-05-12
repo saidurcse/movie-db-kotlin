@@ -3,42 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/movie_nav_graph"
-    app:startDestination="@id/login_screen">
-
-    <fragment
-        android:id="@+id/login_screen"
-        android:name="com.example.saidur.ui.login.LoginFragment"
-        android:label="fragment_moviedb_login"
-        tools:layout="@layout/fragment_moviedb_login" >
-        <action
-            android:id="@+id/action_login_next"
-            app:destination="@id/movie_home"
-            app:popUpTo="@id/login_screen"
-            app:popUpToInclusive="true"/>
-    </fragment>
+    app:startDestination="@id/movie_home">
 
     <fragment
         android:id="@+id/movie_home"
-        android:name="com.example.saidur.ui.home.HomeFragment"
+        android:name="com.example.saidur.ui.home.WeatherFragment"
         android:label="fragment_moviedb_home"
         tools:layout="@layout/fragment_moviedb_home" >
-        <action
-            android:id="@+id/action_home_next"
-            app:destination="@id/movie_details"
-            app:popUpTo="@id/login_screen"
-            app:popUpToInclusive="true"/>
-    </fragment>
-
-    <fragment
-        android:id="@+id/movie_details"
-        android:name="com.example.saidur.ui.details.MovieDetailsFragment"
-        android:label="fragment_moviedb_details"
-        tools:layout="@layout/fragment_moviedb_details" >
-        <action
-            android:id="@+id/action_moviedetails_next"
-            app:destination="@id/movie_details"
-            app:popUpTo="@id/movie_home"
-            app:popUpToInclusive="true"/>
     </fragment>
 
 </navigation>

@@ -10,7 +10,7 @@ import org.koin.dsl.module
 val databaseModule = module {
 
     fun provideDatabase(application: Application): WeatherDataBase {
-        return Room.databaseBuilder(application, WeatherDataBase::class.java, "MovieDB")
+        return Room.databaseBuilder(application, WeatherDataBase::class.java, "Weather")
             .allowMainThreadQueries()
             .fallbackToDestructiveMigration()
             .build()

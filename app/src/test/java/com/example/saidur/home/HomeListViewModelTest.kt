@@ -9,7 +9,7 @@ import com.nhaarman.mockito_kotlin.verify
 import com.example.saidur.data.api.model.RestListResponse
 import com.example.saidur.data.model.Weather
 import com.example.saidur.data.repository.WeatherRepository
-import com.example.saidur.ui.home.HomeListViewModel
+import com.example.saidur.ui.home.WeatherViewModel
 import com.example.saidur.getOrAwaitValue
 import com.example.saidur.utils.AppResult
 import com.example.saidur.utils.MainCoroutineRule
@@ -33,7 +33,7 @@ import org.mockito.junit.MockitoJUnitRunner
 class HomeListViewModelTest {
     private val repository: WeatherRepository = mock(WeatherRepository::class.java)
 
-    private lateinit var viewModel: HomeListViewModel
+    private lateinit var viewModel: WeatherViewModel
 
     @get:Rule
     var rule: TestRule = InstantTaskExecutorRule()
@@ -55,7 +55,7 @@ class HomeListViewModelTest {
     @Before
     fun setUp() {
         // create view model
-        viewModel = HomeListViewModel(repository)
+        viewModel = WeatherViewModel(repository)
 
         viewModel.offlineMovieList.observeForever(offlineMovieListObserver)
         viewModel.movieList.observeForever(movieListObserver)

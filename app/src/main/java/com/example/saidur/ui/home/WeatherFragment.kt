@@ -6,19 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.GridLayoutManager
 import com.example.saidur.MainActivity
 import com.example.saidur.databinding.FragmentMoviedbHomeBinding
 import com.example.saidur.utils.SharedPreferencesHelper
 import com.example.saidur.utils.SharedPreferencesKey
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class HomeFragment : Fragment(), View.OnClickListener {
+class WeatherFragment : Fragment(), View.OnClickListener {
 
-    private val moviesViewModel by viewModel<HomeListViewModel>()
+    private val moviesViewModel by viewModel<WeatherViewModel>()
     private lateinit var bindingView: FragmentMoviedbHomeBinding
-    private val adapter = MovieAdapter()
     private lateinit var sharedPreferences: SharedPreferencesHelper
 
     override fun onCreateView(
@@ -33,22 +30,15 @@ class HomeFragment : Fragment(), View.OnClickListener {
 
         if (sharedPreferences.get(SharedPreferencesKey.FIRST_TIME, false)!!) {
             moviesViewModel.offlineMovieList.observe(viewLifecycleOwner, Observer {
-                adapter.submitList(it)
+                //adapter.submitList(it)
             })
         } else {
             moviesViewModel.fetchMovieList()
             sharedPreferences.put(SharedPreferencesKey.FIRST_TIME, true)
         }
 
-        bindingView.apply {
-            listMovies.setHasFixedSize(true)
-            listMovies.itemAnimator = DefaultItemAnimator()
-            listMovies.setLayoutManager(GridLayoutManager(activity, 3))
-            listMovies.adapter = adapter
-        }
-
         moviesViewModel.movieList.observe(viewLifecycleOwner, Observer { movieList ->
-            adapter.submitList(movieList)
+            //adapter.submitList(movieList)
         })
 
 

@@ -11,7 +11,7 @@ import com.example.saidur.utils.AppResult
 import com.example.saidur.utils.SingleLiveEvent
 import kotlinx.coroutines.launch
 
-class HomeListViewModel(private val repository: WeatherRepository) : ViewModel() {
+class WeatherViewModel(private val repository: WeatherRepository) : ViewModel() {
 
     val dataLoading = ObservableBoolean(false)
 
