@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/login_screen"
-        android:name="demo.movie.db.kotlin.ui.login.LoginFragment"
+        android:name="com.example.saidur.ui.login.LoginFragment"
         android:label="fragment_moviedb_login"
         tools:layout="@layout/fragment_moviedb_login" >
         <action
@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/movie_home"
-        android:name="demo.movie.db.kotlin.ui.home.HomeFragment"
+        android:name="com.example.saidur.ui.home.HomeFragment"
         android:label="fragment_moviedb_home"
         tools:layout="@layout/fragment_moviedb_home" >
         <action
@@ -31,7 +31,7 @@
 
     <fragment
         android:id="@+id/movie_details"
-        android:name="demo.movie.db.kotlin.ui.details.MovieDetailsFragment"
+        android:name="com.example.saidur.ui.details.MovieDetailsFragment"
         android:label="fragment_moviedb_details"
         tools:layout="@layout/fragment_moviedb_details" >
         <action

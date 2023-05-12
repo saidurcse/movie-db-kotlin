@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MovieDbKotlin</string>
+    <string name="app_name">Weather</string>
     <string name="no_network_connectivity">No Network Connectivity</string>
     <string name="login">Login</string>
     <string name="email_id">Email Id</string>

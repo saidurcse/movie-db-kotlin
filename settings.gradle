@@ -1,2 +1,2 @@
-rootProject.name = "MovieDbKotlin"
+rootProject.name = "Weather"
 include ':app'
