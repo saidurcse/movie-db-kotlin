@@ -6,14 +6,14 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 
-class MovieDBApplication : MultiDexApplication() {
+class WeatherApplication : MultiDexApplication() {
 
     override fun onCreate() {
         super.onCreate()
         instance = this
         startKoin {
             androidLogger()
-            androidContext(this@MovieDBApplication)
+            androidContext(this@WeatherApplication)
             modules(
                 apiModule,
                 viewModelModule,
@@ -25,11 +25,11 @@ class MovieDBApplication : MultiDexApplication() {
     }
 
     companion object {
-        var instance: MovieDBApplication? = null
+        var instance: WeatherApplication? = null
             public set
     }
 
-    fun getInstance(): MovieDBApplication? {
+    fun getInstance(): WeatherApplication? {
         return instance
     }
 }

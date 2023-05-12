@@ -7,8 +7,8 @@ import com.nhaarman.mockito_kotlin.argumentCaptor
 import com.nhaarman.mockito_kotlin.reset
 import com.nhaarman.mockito_kotlin.verify
 import com.example.saidur.data.api.model.RestListResponse
-import com.example.saidur.data.model.Movie
-import com.example.saidur.data.repository.MoviesRepository
+import com.example.saidur.data.model.Weather
+import com.example.saidur.data.repository.WeatherRepository
 import com.example.saidur.ui.home.HomeListViewModel
 import com.example.saidur.getOrAwaitValue
 import com.example.saidur.utils.AppResult
@@ -31,7 +31,7 @@ import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
 class HomeListViewModelTest {
-    private val repository: MoviesRepository = mock(MoviesRepository::class.java)
+    private val repository: WeatherRepository = mock(WeatherRepository::class.java)
 
     private lateinit var viewModel: HomeListViewModel
 
@@ -44,10 +44,10 @@ class HomeListViewModelTest {
     var mainCoroutineRule = MainCoroutineRule()
 
     @Mock
-    lateinit var offlineMovieListObserver: Observer<List<Movie>>
+    lateinit var offlineMovieListObserver: Observer<List<Weather>>
 
     @Mock
-    lateinit var movieListObserver: Observer<List<Movie>>
+    lateinit var movieListObserver: Observer<List<Weather>>
 
     @Mock
     lateinit var showErrorObserver: Observer<String>
@@ -72,7 +72,7 @@ class HomeListViewModelTest {
     @Test
     fun `should get data from DB`() {
         // given
-        val dataResponse = MutableLiveData<List<Movie>>()
+        val dataResponse = MutableLiveData<List<Weather>>()
         dataResponse.value = mockMovieData()
 
         `when`(repository.getAllOfflineDB()).thenReturn(dataResponse)
@@ -82,7 +82,7 @@ class HomeListViewModelTest {
         viewModel.getAllOfflineDB()
 
         // then
-        val observeOfflineMovieListCapture = argumentCaptor<List<Movie>>()
+        val observeOfflineMovieListCapture = argumentCaptor<List<Weather>>()
         viewModel.offlineMovieList.getOrAwaitValue()
         verify(offlineMovieListObserver).onChanged(observeOfflineMovieListCapture.capture())
 
@@ -97,7 +97,7 @@ class HomeListViewModelTest {
         runBlocking {
             launch(Dispatchers.Main) {
                 // given
-                val dataResponse = MutableLiveData<List<Movie>>()
+                val dataResponse = MutableLiveData<List<Weather>>()
                 dataResponse.value = mockMovieData()
 
                 `when`(repository.getAllMovies()).thenReturn(AppResult.Success(getMockApiData()))
@@ -106,7 +106,7 @@ class HomeListViewModelTest {
                 viewModel.fetchMovieList()
 
                 // then
-                val observeMovieListCapture = argumentCaptor<List<Movie>>()
+                val observeMovieListCapture = argumentCaptor<List<Weather>>()
                 viewModel.movieList.getOrAwaitValue()
                 verify(movieListObserver).onChanged(observeMovieListCapture.capture())
 
@@ -154,8 +154,8 @@ class HomeListViewModelTest {
     )
 
     private fun mockMovieData() = listOf(
-        Movie(title = "Test movie1"),
-        Movie(title = "Test movie2"),
-        Movie(title = "Test movie3")
+        Weather(title = "Test movie1"),
+        Weather(title = "Test movie2"),
+        Weather(title = "Test movie3")
     )
 }

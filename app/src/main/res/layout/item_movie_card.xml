@@ -6,7 +6,7 @@
     <data>
         <variable
             name="movie"
-            type="com.example.saidur.data.model.Movie" />
+            type="com.example.saidur.data.model.Weather" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

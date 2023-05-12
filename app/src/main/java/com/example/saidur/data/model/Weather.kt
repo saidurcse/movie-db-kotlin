@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 
 
 @Entity(tableName = "MovieData")
-data class Movie(
+data class Weather(
 
     @PrimaryKey
     @field:SerializedName("id")

@@ -14,10 +14,10 @@ import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.request.RequestOptions
 import com.example.saidur.BuildConfig
 import com.example.saidur.R
-import com.example.saidur.data.model.Movie
+import com.example.saidur.data.model.Weather
 import com.example.saidur.databinding.ItemMovieCardBinding
 
-class MovieAdapter : ListAdapter<Movie, MovieAdapter.MovieListViewHolder>(MovieDiffCallback) {
+class MovieAdapter : ListAdapter<Weather, MovieAdapter.MovieListViewHolder>(MovieDiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieListViewHolder {
         val mContext = parent.context
@@ -36,7 +36,7 @@ class MovieAdapter : ListAdapter<Movie, MovieAdapter.MovieListViewHolder>(MovieD
     inner class MovieListViewHolder(private val itemMovieCardBinding: ItemMovieCardBinding) :
         RecyclerView.ViewHolder(itemMovieCardBinding.root) {
 
-        fun dataBind(movie: Movie) {
+        fun dataBind(movie: Weather) {
             itemMovieCardBinding.movie = movie
 
             if (movie.posterPath != null) {
@@ -65,13 +65,13 @@ class MovieAdapter : ListAdapter<Movie, MovieAdapter.MovieListViewHolder>(MovieD
     }
 
     companion object {
-        private val MovieDiffCallback: DiffUtil.ItemCallback<Movie> =
-            object : DiffUtil.ItemCallback<Movie>() {
-                override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+        private val MovieDiffCallback: DiffUtil.ItemCallback<Weather> =
+            object : DiffUtil.ItemCallback<Weather>() {
+                override fun areItemsTheSame(oldItem: Weather, newItem: Weather): Boolean {
                     return oldItem.id == oldItem.id
                 }
 
-                override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+                override fun areContentsTheSame(oldItem: Weather, newItem: Weather): Boolean {
                     return oldItem == newItem
                 }
             }

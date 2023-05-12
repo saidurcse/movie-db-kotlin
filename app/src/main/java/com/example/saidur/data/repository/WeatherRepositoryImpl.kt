@@ -1,20 +1,20 @@
 package com.example.saidur.data.repository
 
 import androidx.lifecycle.LiveData
-import com.example.saidur.data.api.MovieApi
+import com.example.saidur.data.api.WeatherApi
 import com.example.saidur.data.api.model.RestListResponse
-import com.example.saidur.data.model.Movie
-import com.example.saidur.database.dao.MovieLocalDataDAO
+import com.example.saidur.data.model.Weather
+import com.example.saidur.database.dao.WeatherLocalDataDAO
 import com.example.saidur.utils.AppResult
 import com.example.saidur.utils.Utils.handleApiError
 import com.example.saidur.utils.Utils.handleSuccess
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class MoviesRepositoryImpl(private val api: MovieApi, private val dao: MovieLocalDataDAO) :
-    MoviesRepository {
+class WeatherRepositoryImpl(private val api: WeatherApi, private val dao: WeatherLocalDataDAO) :
+    WeatherRepository {
 
-    override suspend fun getAllMovies(): AppResult<RestListResponse<Movie>> {
+    override suspend fun getAllMovies(): AppResult<RestListResponse<Weather>> {
         return try {
             val response = api.getMovieList()
             if (response.isSuccessful) {
@@ -32,7 +32,7 @@ class MoviesRepositoryImpl(private val api: MovieApi, private val dao: MovieLoca
         }
     }
 
-    override fun getAllOfflineDB(): LiveData<List<Movie>> {
+    override fun getAllOfflineDB(): LiveData<List<Weather>> {
         return dao.Get()
     }
 }

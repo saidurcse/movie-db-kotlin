@@ -5,21 +5,21 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.saidur.data.model.Movie
-import com.example.saidur.data.repository.MoviesRepository
+import com.example.saidur.data.model.Weather
+import com.example.saidur.data.repository.WeatherRepository
 import com.example.saidur.utils.AppResult
 import com.example.saidur.utils.SingleLiveEvent
 import kotlinx.coroutines.launch
 
-class HomeListViewModel(private val repository: MoviesRepository) : ViewModel() {
+class HomeListViewModel(private val repository: WeatherRepository) : ViewModel() {
 
     val dataLoading = ObservableBoolean(false)
 
-    val offlineMovieList = MutableLiveData<List<Movie>>()
+    val offlineMovieList = MutableLiveData<List<Weather>>()
 
-    val movieList: LiveData<List<Movie>>
+    val movieList: LiveData<List<Weather>>
         get() = _movieList
-    private var _movieList = MutableLiveData<List<Movie>>()
+    private var _movieList = MutableLiveData<List<Weather>>()
     val showError = SingleLiveEvent<String>()
 
     init {

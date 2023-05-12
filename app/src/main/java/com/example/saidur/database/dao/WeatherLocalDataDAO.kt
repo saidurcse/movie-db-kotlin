@@ -5,14 +5,14 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.saidur.data.model.Movie
+import com.example.saidur.data.model.Weather
 
 @Dao
-interface MovieLocalDataDAO {
+interface WeatherLocalDataDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun AddAll(data: List<Movie?>?)
+    fun AddAll(data: List<Weather?>?)
 
     @Query("Select * from MovieData")
-    fun Get(): LiveData<List<Movie>>
+    fun Get(): LiveData<List<Weather>>
 }

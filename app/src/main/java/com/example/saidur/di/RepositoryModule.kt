@@ -1,15 +1,15 @@
 package com.example.saidur.di
 
-import com.example.saidur.data.api.MovieApi
-import com.example.saidur.data.repository.MoviesRepository
-import com.example.saidur.data.repository.MoviesRepositoryImpl
-import com.example.saidur.database.dao.MovieLocalDataDAO
+import com.example.saidur.data.api.WeatherApi
+import com.example.saidur.data.repository.WeatherRepository
+import com.example.saidur.data.repository.WeatherRepositoryImpl
+import com.example.saidur.database.dao.WeatherLocalDataDAO
 import org.koin.dsl.module
 
 val repositoryModule = module {
 
-    fun provideMovieRepository(api: MovieApi, dao: MovieLocalDataDAO): MoviesRepository {
-        return MoviesRepositoryImpl(api, dao)
+    fun provideMovieRepository(api: WeatherApi, dao: WeatherLocalDataDAO): WeatherRepository {
+        return WeatherRepositoryImpl(api, dao)
     }
 
     single { provideMovieRepository(get(), get()) }
