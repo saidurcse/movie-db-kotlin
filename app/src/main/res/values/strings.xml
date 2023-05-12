@@ -1,13 +1,13 @@
 <resources>
     <string name="app_name">Weather</string>
     <string name="no_network_connectivity">No Network Connectivity</string>
-    <string name="login">Login</string>
-    <string name="email_id">Email Id</string>
-    <string name="password">Password</string>
-    <string name="demo_eamil">test@test.com</string>
-    <string name="demo_password_hint">123456</string>
-    <string name="user_email_password_is_wrong">User email or password is wrong</string>
-    <string name="movie_list_warning">Fail to fetch movie list</string>
-    <string name="movie_db">Movie DB</string>
-    <string name="movie_details">Movie Details</string>
+    <string name="demo_application_for_mphasis">Demo Application for MPhasis</string>
+    <string name="view_weather">View Weather</string>
+    <string name="description_weather_condition_icon">weather condition icon</string>
+    <string name="degree_celsius_symbol">°C</string>
+    <string name="label_humidity">Humidity</string>
+    <string name="label_pressure">Pressure</string>
+    <string name="label_visibility">Visibility</string>
+    <string name="label_sunrise">Sunrise</string>
+    <string name="label_sunset">Sunset</string>
 </resources>

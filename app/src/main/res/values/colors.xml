@@ -11,4 +11,12 @@
     <color name="grey">#969696</color>
     <color name="grey_light">#E0DFDF</color>
     <color name="black_light">#000000</color>
+
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="color_white">#ffffff</color>
+    <color name="color_bg">#15a1ca</color>
+    <color name="gray">#727272</color>
 </resources>

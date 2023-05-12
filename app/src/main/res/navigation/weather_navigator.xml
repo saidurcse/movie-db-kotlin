@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/movie_nav_graph"
-    app:startDestination="@id/movie_home">
+    app:startDestination="@id/weather_home">
 
     <fragment
-        android:id="@+id/movie_home"
+        android:id="@+id/weather_home"
         android:name="com.example.saidur.ui.home.WeatherFragment"
-        android:label="fragment_moviedb_home"
-        tools:layout="@layout/fragment_moviedb_home" >
+        android:label="fragment_weather"
+        tools:layout="@layout/fragment_weather" >
     </fragment>
 
 </navigation>

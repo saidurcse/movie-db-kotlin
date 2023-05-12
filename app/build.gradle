@@ -28,9 +28,8 @@ android {
             }
         }
 
-        buildConfigField "String", "API_URL", "\"" + getApiUrl() + "\""
-        buildConfigField "String", "IMAGE_URL", "\"" + getImageUrl() + "\""
-        buildConfigField "String", "API_KEY", "\"" + getApiKey() + "\""
+        buildConfigField "String", "BASE_URL", "\"" + getBaseUrl() + "\""
+        buildConfigField "String", "APP_ID", "\"" + getAppId() + "\""
     }
 
     dexOptions {
@@ -152,35 +151,24 @@ dependencies {
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.0"
 }
 
-def getApiUrl() {
+def getBaseUrl() {
     Properties properties = new Properties()
     properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
-    String apiUrl = properties.getProperty("api_url")
-    if(apiUrl == null)
-        throw new FileNotFoundException("Add 'api_url' field at local.properties file.")
+    String baseUrl = properties.getProperty("base_url")
+    if(baseUrl==null)
+        throw new GradleException("Add 'base_url' field at local.properties file.")
 
-    return apiUrl
+    return baseUrl
 }
 
-def getImageUrl() {
+def getAppId() {
     Properties properties = new Properties()
     properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
-    String imageUrl = properties.getProperty("image_url")
-    if(imageUrl == null)
-        throw new FileNotFoundException("Add 'image_url' field at local.properties file.")
+    String appId = properties.getProperty("app_id")
+    if(appId==null)
+        throw new GradleException("Add 'app_id' field at local.properties file.")
 
-    return imageUrl
-}
-
-def getApiKey() {
-    Properties properties = new Properties()
-    properties.load(project.rootProject.file('local.properties').newDataInputStream())
-
-    String apiKey = properties.getProperty("api_key")
-    if(apiKey == null)
-        throw new FileNotFoundException("Add 'api_key' field at local.properties file.")
-
-    return apiKey
+    return appId
 }
