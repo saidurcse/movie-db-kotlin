@@ -7,7 +7,6 @@ import com.nhaarman.mockito_kotlin.argumentCaptor
 import com.nhaarman.mockito_kotlin.reset
 import com.nhaarman.mockito_kotlin.verify
 import com.example.saidur.data.api.model.RestListResponse
-import com.example.saidur.data.model.Weather
 import com.example.saidur.data.repository.WeatherRepository
 import com.example.saidur.ui.home.WeatherViewModel
 import com.example.saidur.getOrAwaitValue
@@ -30,7 +29,7 @@ import org.mockito.Mockito.mock
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
-class HomeListViewModelTest {
+class WeatherViewModelTest {
     private val repository: WeatherRepository = mock(WeatherRepository::class.java)
 
     private lateinit var viewModel: WeatherViewModel

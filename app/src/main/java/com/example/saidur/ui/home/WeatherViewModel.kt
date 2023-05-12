@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.saidur.data.model.Weather
+import com.example.saidur.data.model.WeatherInfoResponse
 import com.example.saidur.data.repository.WeatherRepository
 import com.example.saidur.utils.AppResult
 import com.example.saidur.utils.SingleLiveEvent
@@ -15,30 +15,30 @@ class WeatherViewModel(private val repository: WeatherRepository) : ViewModel() 
 
     val dataLoading = ObservableBoolean(false)
 
-    val offlineMovieList = MutableLiveData<List<Weather>>()
+    val offlineMovieList = MutableLiveData<WeatherInfoResponse>()
 
-    val movieList: LiveData<List<Weather>>
-        get() = _movieList
-    private var _movieList = MutableLiveData<List<Weather>>()
+    val weatherData: LiveData<WeatherInfoResponse>
+        get() = _weatherData
+    private var _weatherData = MutableLiveData<WeatherInfoResponse>()
     val showError = SingleLiveEvent<String>()
 
     init {
-        //fetchMovieList()
+
     }
 
     fun getAllOfflineDB(){
         offlineMovieList.value = repository.getAllOfflineDB().value
     }
 
-    fun fetchMovieList() {
+    fun fetchWeatherData() {
         dataLoading.set(true)
         viewModelScope.launch {
-            val result = repository.getAllMovies()
+            val result = repository.getWeatherDataInfo()
 
             dataLoading.set(false)
             when (result) {
                 is AppResult.Success -> {
-                    _movieList.value = result.successData.results
+                    _weatherData.value = result.successData
                     showError.value = null
                 }
                 is AppResult.Error -> showError.value = result.exception.message

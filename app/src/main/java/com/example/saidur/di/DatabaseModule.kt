@@ -16,10 +16,10 @@ val databaseModule = module {
             .build()
     }
 
-    fun provideMoviesDao(database: WeatherDataBase): WeatherLocalDataDAO {
-        return database.movieLocalDataDAO
+    fun provideWeatherDao(database: WeatherDataBase): WeatherLocalDataDAO {
+        return database.weatherLocalDataDAO
     }
 
     single { provideDatabase(androidApplication()) }
-    single { provideMoviesDao(get()) }
+    single { provideWeatherDao(get()) }
 }

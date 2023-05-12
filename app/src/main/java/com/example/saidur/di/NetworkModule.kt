@@ -37,7 +37,7 @@ val networkModule = module {
 
     single { provideHttpClient() }
     single {
-        val baseUrl = BuildConfig.API_URL
+        val baseUrl = BuildConfig.BASE_URL
         provideRetrofit(get(), baseUrl)
     }
 }

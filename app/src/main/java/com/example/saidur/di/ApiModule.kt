@@ -6,9 +6,9 @@ import retrofit2.Retrofit
 
 val apiModule = module {
 
-    fun provideMoviesApi(retrofit: Retrofit): WeatherApi {
+    fun provideWeatherApi(retrofit: Retrofit): WeatherApi {
         return retrofit.create(WeatherApi::class.java)
     }
 
-    single { provideMoviesApi(get()) }
+    single { provideWeatherApi(get()) }
 }

@@ -2,8 +2,7 @@ package com.example.saidur.data.repository
 
 import androidx.lifecycle.LiveData
 import com.example.saidur.data.api.WeatherApi
-import com.example.saidur.data.api.model.RestListResponse
-import com.example.saidur.data.model.Weather
+import com.example.saidur.data.model.WeatherInfoResponse
 import com.example.saidur.database.dao.WeatherLocalDataDAO
 import com.example.saidur.utils.AppResult
 import com.example.saidur.utils.Utils.handleApiError
@@ -14,13 +13,13 @@ import kotlinx.coroutines.withContext
 class WeatherRepositoryImpl(private val api: WeatherApi, private val dao: WeatherLocalDataDAO) :
     WeatherRepository {
 
-    override suspend fun getAllMovies(): AppResult<RestListResponse<Weather>> {
+    override suspend fun getWeatherDataInfo(): AppResult<WeatherInfoResponse> {
         return try {
-            val response = api.getMovieList()
+            val response = api.getWeatherData("32.8140", "96.9489")
             if (response.isSuccessful) {
                 response.body()?.let {
                     withContext(Dispatchers.IO) {
-                        dao.AddAll(it.results)
+                        //dao.AddAll(it.results)
                     }
                 }
                 handleSuccess(response)
@@ -32,7 +31,7 @@ class WeatherRepositoryImpl(private val api: WeatherApi, private val dao: Weathe
         }
     }
 
-    override fun getAllOfflineDB(): LiveData<List<Weather>> {
+    override fun getAllOfflineDB(): LiveData<WeatherInfoResponse> {
         return dao.Get()
     }
 }
