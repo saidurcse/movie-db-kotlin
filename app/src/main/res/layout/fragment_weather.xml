@@ -19,13 +19,6 @@
             tools:context=".ui.login.LoginFragment">
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/top_guideline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_begin="@dimen/vertical_margin" />
-
-            <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/start_guideline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -47,51 +40,60 @@
                 android:minHeight="?attr/actionBarSize"
                 android:theme="?attr/actionBarTheme"
                 app:title="@string/app_name"
-                app:layout_constraintEnd_toStartOf="@id/start_guideline"
-                app:layout_constraintEnd_toEndOf="@id/end_guideline"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <include
                 android:id="@+id/layout_input"
                 layout="@layout/layout_input_part"
-                app:layout_constraintEnd_toStartOf="@id/start_guideline"
-                app:layout_constraintEnd_toEndOf="@id/end_guideline"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar"/>
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/start_guideline"
+                app:layout_constraintEnd_toEndOf="@+id/end_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
             <include
                 android:id="@+id/layout_weather_basic"
-                layout="@layout/layout_weather_basic_info"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
+                layout="@layout/layout_weather_basic_info"
+                app:layout_constraintStart_toStartOf="@+id/start_guideline"
+                app:layout_constraintEnd_toEndOf="@+id/end_guideline"
                 app:layout_constraintTop_toBottomOf="@id/layout_input" />
 
             <include
                 android:id="@+id/layout_weather_additional"
                 layout="@layout/layout_weather_additional_info"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="@+id/start_guideline"
+                app:layout_constraintEnd_toEndOf="@+id/end_guideline"
                 app:layout_constraintTop_toBottomOf="@id/layout_weather_basic" />
 
             <include
                 android:id="@+id/layout_sunset_sunrise"
                 layout="@layout/layout_sunrise_sunset"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/start_guideline"
+                app:layout_constraintEnd_toEndOf="@+id/end_guideline"
                 android:layout_marginBottom="25dp"
                 app:layout_constraintBottom_toBottomOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/creditText"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
                 android:layout_marginTop="5dp"
                 android:text="@string/demo_application_for_mphasis"
                 android:gravity="center"
+                app:layout_constraintStart_toStartOf="@+id/start_guideline"
+                app:layout_constraintEnd_toEndOf="@+id/end_guideline"
                 app:layout_constraintTop_toBottomOf="@+id/layout_sunset_sunrise"
-                app:layout_constraintBottom_toBottomOf="parent" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:visibility="visible"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_error_message"

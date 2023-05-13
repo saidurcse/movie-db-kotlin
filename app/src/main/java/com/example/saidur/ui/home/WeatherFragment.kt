@@ -29,7 +29,6 @@ class WeatherFragment : Fragment(), View.OnClickListener {
     private val moviesViewModel by viewModel<WeatherViewModel>()
     private lateinit var bindingView: FragmentWeatherBinding
     private lateinit var sharedPreferences: SharedPreferencesHelper
-    private var mRequestingLocationUpdates: Boolean? = null // boolean flag to toggle the ui
     val REQUEST_ACCESS_FINE_LOCATION = 22
 
     override fun onCreateView(
@@ -51,7 +50,7 @@ class WeatherFragment : Fragment(), View.OnClickListener {
             sharedPreferences.put(SharedPreferencesKey.FIRST_TIME, true)
         }*/
 
-        moviesViewModel.fetchWeatherData("32.8140", "96.9489")
+        //moviesViewModel.fetchWeatherData("32.8140", "96.9489")
         moviesViewModel.weatherData.observe(viewLifecycleOwner, Observer { weatherData ->
             val weatherConditionIconUrl = "http://openweathermap.org/img/w/${weatherData.weather?.get(0)!!.icon}.png"
             bindingView.layoutWeatherBasic.tv_date_time.text = weatherData.dt!!.unixTimestampToDateTimeString()
@@ -107,7 +106,7 @@ class WeatherFragment : Fragment(), View.OnClickListener {
                         override fun onPermissionGranted() {
                             val cityName = bindingView.layoutInput.input_city_name.text.toString()
                             if(cityName != "") {
-                                moviesViewModel.fetchWeatherData("32.8140", "96.9489")
+                                moviesViewModel.fetchWeatherData("32.8140", "-96.9442177")
                             }
                         }
                     })
