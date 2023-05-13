@@ -47,7 +47,7 @@ class WeatherViewModelTest {
     lateinit var offlineMovieListObserver: Observer<WeatherInfoResponse>
 
     @Mock
-    lateinit var movieListObserver: Observer<WeatherInfoResponse>
+    lateinit var weatherListObserver: Observer<WeatherInfoResponse>
 
     @Mock
     lateinit var showErrorObserver: Observer<String>
@@ -58,14 +58,14 @@ class WeatherViewModelTest {
         viewModel = WeatherViewModel(repository)
 
         viewModel.offlineMovieList.observeForever(offlineMovieListObserver)
-        viewModel.weatherData.observeForever(movieListObserver)
+        viewModel.weatherData.observeForever(weatherListObserver)
         viewModel.showError.observeForever(showErrorObserver)
     }
 
     @After
     fun tearDown() {
         reset(offlineMovieListObserver)
-        reset(movieListObserver)
+        reset(weatherListObserver)
         reset(showErrorObserver)
     }
 
@@ -73,7 +73,7 @@ class WeatherViewModelTest {
     fun `should get data from DB`() {
         // given
         val dataResponse = MutableLiveData<WeatherInfoResponse>()
-        dataResponse.value = mockMovieData()
+        dataResponse.value = getMockApiData()
 
         `when`(repository.getAllOfflineDB()).thenReturn(dataResponse)
 
@@ -86,7 +86,7 @@ class WeatherViewModelTest {
         verify(offlineMovieListObserver).onChanged(observeOfflineMovieListCapture.capture())
 
         assertEquals(
-            mockMovieData(),
+            getMockApiData(),
             observeOfflineMovieListCapture.firstValue
         )
     }
@@ -97,20 +97,20 @@ class WeatherViewModelTest {
             launch(Dispatchers.Main) {
                 // given
                 val dataResponse = MutableLiveData<WeatherInfoResponse>()
-                dataResponse.value = mockMovieData()
+                dataResponse.value = getMockApiData()
 
-                `when`(repository.getWeatherDataInfo()).thenReturn(AppResult.Success(getMockApiData()))
+                `when`(repository.getWeatherDataInfo("32.8295", "-96.9442")).thenReturn(AppResult.Success(getMockApiData()))
 
                 // when
-                viewModel.fetchWeatherData("32.8140", "96.9489")
+                viewModel.fetchWeatherData("32.8295", "-96.9442")
 
                 // then
                 val observeMovieListCapture = argumentCaptor<WeatherInfoResponse>()
                 viewModel.weatherData.getOrAwaitValue()
-                verify(movieListObserver).onChanged(observeMovieListCapture.capture())
+                verify(weatherListObserver).onChanged(observeMovieListCapture.capture())
 
                 assertEquals(
-                    mockMovieData(),
+                    getMockApiData(),
                     observeMovieListCapture.firstValue
                 )
 
@@ -125,14 +125,14 @@ class WeatherViewModelTest {
     }
 
     @Test
-    fun `should show error when fetching movie from api`() {
+    fun `should show error when fetching weather from api`() {
         runBlocking {
             launch(Dispatchers.Main) {
                 // given
-                `when`(repository.getWeatherDataInfo()).thenReturn(AppResult.Error(Exception("Error!")))
+                `when`(repository.getWeatherDataInfo("32.8295", "-96.9442")).thenReturn(AppResult.Error(Exception("Error!")))
 
                 // when
-                viewModel.fetchWeatherData("32.8140", "96.9489")
+                viewModel.fetchWeatherData("32.8295", "-96.9442")
 
                 // then
                 val observeErrorCapture = argumentCaptor<String>()
@@ -145,16 +145,7 @@ class WeatherViewModelTest {
         }
     }
 
-    private fun getMockApiData() = RestListResponse(
-        results = mockMovieData().toMutableList(),
-        page = 0,
-        total_pages = 0,
-        total_results = 0
-    )
-
-    private fun mockMovieData() = listOf(
-        Weather(title = "Test movie1"),
-        Weather(title = "Test movie2"),
-        Weather(title = "Test movie3")
+    private fun getMockApiData() = (
+        WeatherInfoResponse(name = "Irving")
     )
 }
