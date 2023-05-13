@@ -25,7 +25,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class WeatherFragment : Fragment(), View.OnClickListener {
 
-    private val moviesViewModel by viewModel<WeatherViewModel>()
+    private val weatherViewModel by viewModel<WeatherViewModel>()
     private lateinit var bindingView: FragmentWeatherBinding
     private lateinit var sharedPreferences: SharedPreferencesHelper
     val REQUEST_ACCESS_FINE_LOCATION = 22
@@ -36,26 +36,26 @@ class WeatherFragment : Fragment(), View.OnClickListener {
     ): View {
         bindingView = FragmentWeatherBinding.inflate(layoutInflater, container, false)
         bindingView.lifecycleOwner = this
-        bindingView.viewModel = moviesViewModel
+        bindingView.viewModel = weatherViewModel
         (requireActivity() as MainActivity).supportActionBar!!.hide()
         sharedPreferences = SharedPreferencesHelper(requireContext())
 
         /*if (sharedPreferences.get(SharedPreferencesKey.FIRST_TIME, false)!!) {
-            moviesViewModel.offlineMovieList.observe(viewLifecycleOwner, Observer {
+            weathersViewModel.offlineMovieList.observe(viewLifecycleOwner, Observer {
                 //adapter.submitList(it)
             })
         } else {
-            moviesViewModel.fetchWeatherData()
+            weathersViewModel.fetchWeatherData()
             sharedPreferences.put(SharedPreferencesKey.FIRST_TIME, true)
         }*/
 
-        moviesViewModel.weatherLatLongData.observe(viewLifecycleOwner, Observer { weatherLatLongData ->
+        weatherViewModel.weatherLatLongData.observe(viewLifecycleOwner, Observer { weatherLatLongData ->
             val lat = weatherLatLongData.get(0).lat.toString()
             val lon =  weatherLatLongData.get(0).lon.toString()
-            moviesViewModel.fetchWeatherData(lat,lon)
+            weatherViewModel.fetchWeatherData(lat,lon)
         })
 
-        moviesViewModel.weatherData.observe(viewLifecycleOwner, Observer { weatherData ->
+        weatherViewModel.weatherData.observe(viewLifecycleOwner, Observer { weatherData ->
             val weatherConditionIconUrl = "https://openweathermap.org/img/w/${weatherData.weather?.get(0)!!.icon}.png"
             bindingView.layoutWeatherBasic.tv_date_time.text = weatherData.dt!!.unixTimestampToDateTimeString()
             bindingView.layoutWeatherBasic.tv_temperature.text = weatherData.main!!.temp!!.kelvinToCelsius().toString()
@@ -114,7 +114,7 @@ class WeatherFragment : Fragment(), View.OnClickListener {
                         override fun onPermissionGranted() {
                             val cityName = bindingView.layoutInput.input_city_name.text.toString()
                             if(cityName.isNotEmpty()) {
-                                moviesViewModel.fetchLatLonData("http://api.openweathermap.org/geo/1.0/direct" , cityName)
+                                weatherViewModel.fetchLatLonData("http://api.openweathermap.org/geo/1.0/direct" , cityName)
                             }
                         }
                     })

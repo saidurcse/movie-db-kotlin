@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 
 class SharedPreferencesHelper(context: Context) {
     private val sharedPreferences: SharedPreferences
-    private val beaconPref = "moviedb-prefs"
+    private val beaconPref = "weatherdb-prefs"
     private val editor: SharedPreferences.Editor
 
     init {

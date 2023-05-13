@@ -8,13 +8,13 @@
 
 A simple project for The Movie DB based on Kotlin MVVM with Android Jetpack Navigation clean architecture.
 
-![alt text](https://github.com/saidurcse/movie-db-kotlin/blob/main/app/src/main/assets/home.PNG)
+![alt text](https://github.com/saidurcse/weather-db-kotlin/blob/main/app/src/main/assets/home.PNG)
 
 ## Build Process
 
 Add your Movie db api url and image url with API key in local.properties file.
 
-api_url=https://api.themoviedb.org/
+api_url=https://api.theweatherdb.org/
 
 image_url=https://image.tmdb.org/t/p/w780
 
