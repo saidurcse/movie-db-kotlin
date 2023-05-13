@@ -122,7 +122,7 @@ dependencies {
 
     //Image Library
     implementation 'com.github.bumptech.glide:glide:4.11.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    kapt 'com.github.bumptech.glide:compiler:4.11.0'
 
     // Koin for the dependencies injections
     implementation "org.koin:koin-android:$coin_version"

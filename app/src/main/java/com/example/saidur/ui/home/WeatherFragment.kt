@@ -57,7 +57,7 @@ class WeatherFragment : Fragment(), View.OnClickListener {
         })
 
         moviesViewModel.weatherData.observe(viewLifecycleOwner, Observer { weatherData ->
-            val weatherConditionIconUrl = "http://openweathermap.org/img/w/${weatherData.weather?.get(0)!!.icon}.png"
+            val weatherConditionIconUrl = "https://openweathermap.org/img/w/${weatherData.weather?.get(0)!!.icon}.png"
             bindingView.layoutWeatherBasic.tv_date_time.text = weatherData.dt!!.unixTimestampToDateTimeString()
             bindingView.layoutWeatherBasic.tv_temperature.text = weatherData.main!!.temp!!.kelvinToCelsius().toString()
             bindingView.layoutWeatherBasic.tv_city_country.text = weatherData.name + weatherData.sys!!.country
