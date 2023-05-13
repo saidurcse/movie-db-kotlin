@@ -50,7 +50,13 @@ class WeatherFragment : Fragment(), View.OnClickListener {
             sharedPreferences.put(SharedPreferencesKey.FIRST_TIME, true)
         }*/
 
-        //moviesViewModel.fetchWeatherData("32.8140", "96.9489")
+
+        moviesViewModel.weatherLatLongData.observe(viewLifecycleOwner, Observer { weatherLatLongData ->
+            val lat = weatherLatLongData.get(0).lat.toString()
+            val lon =  weatherLatLongData.get(0).lon.toString()
+            moviesViewModel.fetchWeatherData(lat,lon)
+        })
+
         moviesViewModel.weatherData.observe(viewLifecycleOwner, Observer { weatherData ->
             val weatherConditionIconUrl = "http://openweathermap.org/img/w/${weatherData.weather?.get(0)!!.icon}.png"
             bindingView.layoutWeatherBasic.tv_date_time.text = weatherData.dt!!.unixTimestampToDateTimeString()
@@ -105,8 +111,8 @@ class WeatherFragment : Fragment(), View.OnClickListener {
 
                         override fun onPermissionGranted() {
                             val cityName = bindingView.layoutInput.input_city_name.text.toString()
-                            if(cityName != "") {
-                                moviesViewModel.fetchWeatherData("32.8140", "-96.9442177")
+                            if(cityName.isNotEmpty()) {
+                                moviesViewModel.fetchLatLonData("http://api.openweathermap.org/geo/1.0/direct" , cityName)
                             }
                         }
                     })

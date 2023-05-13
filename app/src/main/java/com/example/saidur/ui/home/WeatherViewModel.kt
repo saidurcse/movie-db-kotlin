@@ -5,6 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.saidur.data.model.LatLonResponseItem
+import com.example.saidur.data.model.LocalNames
 import com.example.saidur.data.model.WeatherInfoResponse
 import com.example.saidur.data.repository.WeatherRepository
 import com.example.saidur.utils.AppResult
@@ -20,6 +22,11 @@ class WeatherViewModel(private val repository: WeatherRepository) : ViewModel() 
     val weatherData: LiveData<WeatherInfoResponse>
         get() = _weatherData
     private var _weatherData = MutableLiveData<WeatherInfoResponse>()
+
+    val weatherLatLongData: LiveData<ArrayList<LatLonResponseItem>>
+        get() = _weatherLatLongData
+    private var _weatherLatLongData = MutableLiveData<ArrayList<LatLonResponseItem>>()
+
     val showError = SingleLiveEvent<String>()
 
     init {
@@ -28,6 +35,22 @@ class WeatherViewModel(private val repository: WeatherRepository) : ViewModel() 
 
     fun getAllOfflineDB(){
         offlineMovieList.value = repository.getAllOfflineDB().value
+    }
+
+    fun fetchLatLonData(url: String, cityName: String) {
+        dataLoading.set(true)
+        viewModelScope.launch {
+            val result = repository.getLatLongDataInfo(url, cityName)
+
+            dataLoading.set(false)
+            when (result) {
+                is AppResult.Success -> {
+                    _weatherLatLongData.value = result.successData
+                    showError.value = null
+                }
+                is AppResult.Error -> showError.value = result.exception.message
+            }
+        }
     }
 
     fun fetchWeatherData(lat: String, lon: String) {
@@ -45,4 +68,5 @@ class WeatherViewModel(private val repository: WeatherRepository) : ViewModel() 
             }
         }
     }
+
 }
