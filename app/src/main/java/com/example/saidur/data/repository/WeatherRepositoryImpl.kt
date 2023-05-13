@@ -3,7 +3,6 @@ package com.example.saidur.data.repository
 import androidx.lifecycle.LiveData
 import com.example.saidur.data.api.WeatherApi
 import com.example.saidur.data.model.LatLonResponseItem
-import com.example.saidur.data.model.LocalNames
 import com.example.saidur.data.model.WeatherInfoResponse
 import com.example.saidur.database.dao.WeatherLocalDataDAO
 import com.example.saidur.utils.AppResult
@@ -46,6 +45,6 @@ class WeatherRepositoryImpl(private val api: WeatherApi, private val dao: Weathe
     }
 
     override fun getAllOfflineDB(): LiveData<WeatherInfoResponse> {
-        return dao.Get()
+        return dao.Get() // offline data
     }
 }

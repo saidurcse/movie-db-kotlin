@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.saidur.data.model.LatLonResponseItem
-import com.example.saidur.data.model.LocalNames
 import com.example.saidur.data.model.WeatherInfoResponse
 import com.example.saidur.data.repository.WeatherRepository
 import com.example.saidur.utils.AppResult
@@ -17,7 +16,7 @@ class WeatherViewModel(private val repository: WeatherRepository) : ViewModel() 
 
     val dataLoading = ObservableBoolean(false)
 
-    val offlineMovieList = MutableLiveData<WeatherInfoResponse>()
+    val offlineWeather = MutableLiveData<WeatherInfoResponse>()
 
     val weatherData: LiveData<WeatherInfoResponse>
         get() = _weatherData
@@ -29,12 +28,8 @@ class WeatherViewModel(private val repository: WeatherRepository) : ViewModel() 
 
     val showError = SingleLiveEvent<String>()
 
-    init {
-
-    }
-
     fun getAllOfflineDB(){
-        offlineMovieList.value = repository.getAllOfflineDB().value
+        offlineWeather.value = repository.getAllOfflineDB().value
     }
 
     fun fetchLatLonData(url: String, cityName: String) {

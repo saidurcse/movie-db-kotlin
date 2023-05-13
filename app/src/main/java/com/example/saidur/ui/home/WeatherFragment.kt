@@ -49,7 +49,6 @@ class WeatherFragment : Fragment(), View.OnClickListener {
             sharedPreferences.put(SharedPreferencesKey.FIRST_TIME, true)
         }*/
 
-
         moviesViewModel.weatherLatLongData.observe(viewLifecycleOwner, Observer { weatherLatLongData ->
             val lat = weatherLatLongData.get(0).lat.toString()
             val lon =  weatherLatLongData.get(0).lon.toString()
@@ -119,8 +118,6 @@ class WeatherFragment : Fragment(), View.OnClickListener {
                             }
                         }
                     })
-
-
             }
         }
     }

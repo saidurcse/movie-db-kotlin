@@ -6,7 +6,6 @@ import androidx.lifecycle.Observer
 import com.nhaarman.mockito_kotlin.argumentCaptor
 import com.nhaarman.mockito_kotlin.reset
 import com.nhaarman.mockito_kotlin.verify
-import com.example.saidur.data.api.model.RestListResponse
 import com.example.saidur.data.model.WeatherInfoResponse
 import com.example.saidur.data.repository.WeatherRepository
 import com.example.saidur.ui.home.WeatherViewModel
@@ -57,7 +56,7 @@ class WeatherViewModelTest {
         // create view model
         viewModel = WeatherViewModel(repository)
 
-        viewModel.offlineMovieList.observeForever(offlineMovieListObserver)
+        viewModel.offlineWeather.observeForever(offlineMovieListObserver)
         viewModel.weatherData.observeForever(weatherListObserver)
         viewModel.showError.observeForever(showErrorObserver)
     }
@@ -82,7 +81,7 @@ class WeatherViewModelTest {
 
         // then
         val observeOfflineMovieListCapture = argumentCaptor<WeatherInfoResponse>()
-        viewModel.offlineMovieList.getOrAwaitValue()
+        viewModel.offlineWeather.getOrAwaitValue()
         verify(offlineMovieListObserver).onChanged(observeOfflineMovieListCapture.capture())
 
         assertEquals(

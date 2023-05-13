@@ -2,7 +2,6 @@ package com.example.saidur.data.repository
 
 import androidx.lifecycle.LiveData
 import com.example.saidur.data.model.LatLonResponseItem
-import com.example.saidur.data.model.LocalNames
 import com.example.saidur.data.model.WeatherInfoResponse
 import com.example.saidur.utils.AppResult
 

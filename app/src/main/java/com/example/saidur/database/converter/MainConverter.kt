@@ -1,9 +1,7 @@
 package com.example.saidur.database.converter
 
 import androidx.room.TypeConverter
-import com.example.saidur.data.model.Clouds
 import com.example.saidur.data.model.Main
-import com.example.saidur.data.model.Sys
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 

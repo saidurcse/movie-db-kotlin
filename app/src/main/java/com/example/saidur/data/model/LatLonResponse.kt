@@ -2,12 +2,6 @@ package com.example.saidur.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class LatLonResponse(
-
-	@field:SerializedName("LatLonResponse")
-	val latLonResponse: List<LatLonResponseItem>
-)
-
 data class LocalNames(
 
 	@field:SerializedName("ru")
